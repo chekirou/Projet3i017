@@ -7,4 +7,4 @@ public class DBStatic {
 	public static String mysql_username = "root";
 	public static String mysql_password = "root";
 	
-}
+} 
