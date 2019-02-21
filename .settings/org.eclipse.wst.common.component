@@ -2,6 +2,12 @@
     <wb-module deploy-name="Twister">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <dependent-module archiveName="json-org.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//users/Etu9/3801679/Téléchargements/json-org.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="mongo-java-driver-3.10.1.jar" deploy-path="/WEB-INF/lib" handle="module:/classpath/lib//users/nfs/Etu9/3801679/Téléchargements/mongo-java-driver-3.10.1.jar">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
         <property name="context-root" value="RCTwister"/>
         <property name="java-output-path" value="/Twister/build/classes"/>
     </wb-module>

@@ -3,6 +3,8 @@ package Services;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import Tools.MongoTools;
+
 public class Message {
 	public static JSONObject addMessage(String myLogin,String key, String Message)
 	{
@@ -23,7 +25,10 @@ public class Message {
 		}
 		else
 		{
+			// recuperer l'id
+			
 			// ajouter dans la base de données le message 
+			MongoTools.addMessage(13, myLogin, Message);
 			try {
 				obj = new JSONObject();
 				obj.put("ajout du message", "ok ");
