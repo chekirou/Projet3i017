@@ -20,7 +20,7 @@ public class AddMessage extends HttpServlet{
 		String message = request.getParameter("message");
 		response.setContentType("application/json");
 		PrintWriter out = null;
-		try {
+		try { 
 			out = response.getWriter();
 		} catch (IOException e) {
 			e.printStackTrace();

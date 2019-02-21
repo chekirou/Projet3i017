@@ -44,12 +44,12 @@ public class MongoTools {
 		}
 	}
 
-	public static void deleteMessage(int id_message)
+	public static void deleteMessage(String id_message)
 	{
 		MongoDatabase db = getConnexionMongo();
 		MongoCollection<Document> mc = db.getCollection("Messages");
 		Document d = new Document();
-		d.append("_id",id_message);
+		d.append("_id",new ObjectId(id_message));
 		mc.deleteOne(d);
 		
 	}
@@ -59,7 +59,7 @@ public class MongoTools {
 		MongoTools.addMessage(150, "chekirou", "coucou");
 		MongoTools.addMessage(151, "Leygonie", "hello");
 		System.out.println("suppression");
-		MongoTools.deleteMessage(0);
+		MongoTools.deleteMessage();
 		
 		
 		

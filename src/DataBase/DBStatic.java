@@ -7,4 +7,8 @@ public class DBStatic {
 	public static String mysql_username = "root";
 	public static String mysql_password = "root";
 	
+<<<<<<< HEAD
 } 
+=======
+}
+>>>>>>> branch 'master' of https://github.com/chekirou/Projet3i017.git
