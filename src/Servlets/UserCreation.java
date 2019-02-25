@@ -18,7 +18,8 @@ public class UserCreation extends HttpServlet{
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
 		String sexe = request.getParameter("sexe");
-		int age = Integer.parseInt(request.getParameter("age"));
+		String date_naissance  = request.getParameter("DOB");
+		String email = request.getParameter("email");
 		response.setContentType("application/json");
 		PrintWriter out = null;
 		try {
@@ -26,7 +27,7 @@ public class UserCreation extends HttpServlet{
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 
-		out.print(User.createUser(nom, prenom, login, password, sexe, age));
+		out.print(User.createUser(nom, prenom, login, password, sexe, date_naissance, email));
 		out.flush();
 		
 	}

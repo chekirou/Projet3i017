@@ -6,104 +6,86 @@ import org.json.JSONObject;
 import Tools.FriendTools;
 
 public class Friend {
-	public static JSONObject addFriend(String myLogin,String key, String hisLogin)
-	{
-		
+	public static JSONObject addFriend(String myLogin, String key, String hisLogin) {
+
 		JSONObject obj = null;
-		if(myLogin == null || hisLogin == null)
-		{
+		if (myLogin == null || hisLogin == null || key == null) {
 			obj = Tools.ServiceTools.refused(6);
-			
-		}
-		else if(!Tools.UserTools.existsUser(myLogin, true))
-		{
+
+		} else if (!Tools.UserTools.existsUser(myLogin)) {
 			obj = Tools.ServiceTools.refused(4);
-		}
-		else if(!Tools.UserTools.keyLogin(myLogin, key))
-		{
+		} else if (!Tools.UserTools.keyLogin(myLogin, key)) {
 			obj = Tools.ServiceTools.refused(7);
-		}
-		else
-		{
-			// ajouter dans la base de données le 
-			// hisLogin dans les amis de myLogin
-			
+		} else {
+			obj = new JSONObject();
 			try {
-				obj = new JSONObject();
-				obj.put("ajout de l'ami", "ok ");
-				
+				if (Tools.FriendTools.addfollowing(myLogin, hisLogin)) {
+
+					obj.put("ajout de l'ami", "ok ");
+
+				} else {
+					obj.put("ajout de l'ami", "failed");
+				}
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		
+
 		return obj;
-		
+
 	}
-	public static JSONObject listFriends(String login)
-	{
-		
+
+	public static JSONObject listFriends(String login) {
+
 		JSONObject obj = null;
-		if(login == null)
-		{
+		if (login == null) {
 			obj = Tools.ServiceTools.refused(3);
-			
-		}
-		else if(!Tools.UserTools.existsUser(login, true))
-		{
+
+		} else if (!Tools.UserTools.existsUser(login)) {
 			obj = Tools.ServiceTools.refused(4);
-		}
-		else
-		{
-			
+		} else {
+
 			try {
 				obj = FriendTools.listFriends(login);
-				
-				obj.put("amis ok", "ok ");
-				
+
+				obj.put("amis ", "ok ");
+
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		
+
 		return obj;
-		
+
 	}
-	public static JSONObject unFriend(String myLogin,String key, String hisLogin)
-	{
-		
+
+	public static JSONObject unFriend(String myLogin, String key, String hisLogin) {
+
 		JSONObject obj = null;
-		if(myLogin == null || hisLogin == null)
-		{
+		if (myLogin == null || hisLogin == null) {
 			obj = Tools.ServiceTools.refused(6);
-			
-		}
-		else if(!Tools.UserTools.existsUser(myLogin, true))
-		{
+
+		} else if (!Tools.UserTools.existsUser(myLogin)) {
 			obj = Tools.ServiceTools.refused(4);
-		}
-		else if(!Tools.UserTools.keyLogin(myLogin, key))
-		{
+		} else if (!Tools.UserTools.keyLogin(myLogin, key)) {
 			obj = Tools.ServiceTools.refused(7);
-		}
-		else
-		{
+		} else {
 			// suprimer le friend dans la base de données
+			FriendTools.unfollow(myLogin,hisLogin);
 			try {
 				obj = new JSONObject();
 				obj.put("suppression de l'ami", "ok ");
-				
+
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		
-		return obj;
-		
-	}
-	
-}
 
+		return obj;
+
+	}
+
+}

@@ -3,7 +3,9 @@ package Services;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import Tools.MessageTools;
 import Tools.MongoTools;
+import Tools.ServiceTools;
 
 public class Message {
 	public static JSONObject addMessage(String myLogin,String key, String Message)
@@ -15,7 +17,7 @@ public class Message {
 			obj = Tools.ServiceTools.refused(3);
 			
 		}
-		else if(!Tools.UserTools.existsUser(myLogin, true))
+		else if(!Tools.UserTools.existsUser(myLogin))
 		{
 			obj = Tools.ServiceTools.refused(4);
 		}
@@ -26,9 +28,9 @@ public class Message {
 		else
 		{
 			// recuperer l'id
-			
+			int id = ServiceTools.getID(myLogin);
 			// ajouter dans la base de données le message 
-			MongoTools.addMessage(13, myLogin, Message);
+			MessageTools.addMessage(13, myLogin, Message);
 			try {
 				obj = new JSONObject();
 				obj.put("ajout du message", "ok ");
@@ -83,7 +85,7 @@ public class Message {
 			obj = Tools.ServiceTools.refused(3);
 			
 		}
-		else if(!Tools.UserTools.existsUser(myLogin, true))
+		else if(!Tools.UserTools.existsUser(myLogin))
 		{
 			obj = Tools.ServiceTools.refused(4);
 		}
@@ -91,10 +93,10 @@ public class Message {
 		{
 			obj = Tools.ServiceTools.refused(7);
 		}
-		else if(!Tools.MessageTools.existsMessage(MessageId, true))
+		/*else if(!Tools.MessageTools.existsMessage(MessageId))
 		{
 			obj = Tools.ServiceTools.refused(8);
-		}
+		}*/
 		else
 		{
 			// supprimer dans la base de données le message 
