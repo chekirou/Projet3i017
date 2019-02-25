@@ -30,7 +30,7 @@ public class Message {
 			// recuperer l'id
 			int id = ServiceTools.getID(myLogin);
 			// ajouter dans la base de données le message 
-			MessageTools.addMessage(13, myLogin, Message);
+			MessageTools.addMessage(id, myLogin, Message);
 			try {
 				obj = new JSONObject();
 				obj.put("ajout du message", "ok ");
@@ -53,7 +53,7 @@ public class Message {
 			obj = Tools.ServiceTools.refused(3);
 			
 		}
-		else if(!Tools.UserTools.existsUser(login, true))
+		else if(!Tools.UserTools.existsUser(login))
 		{
 			obj = Tools.ServiceTools.refused(4);
 		}
@@ -63,7 +63,8 @@ public class Message {
 			
 			// hisLogin dans les amis de myLogin
 			try {
-				obj = listMessages(login);
+				int id = ServiceTools.getID(login);
+				obj = MessageTools.listMessages(id);
 				
 				obj.put("messages ok", "ok ");
 				

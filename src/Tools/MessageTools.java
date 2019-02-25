@@ -6,6 +6,7 @@ import java.sql.Statement;
 
 import org.bson.Document;
 import org.bson.types.ObjectId;
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import com.mongodb.client.MongoCollection;
@@ -27,19 +28,28 @@ public class MessageTools {
 		return true;
 
 	}
-	public static void listMessages(int id) {
-
+	public static JSONObject listMessages(int id) {
+		JSONObject obj = new JSONObject();
+		try
+		{
 		MongoDatabase db = MongoTools.getConnexionMongo();
 		MongoCollection<Document> mc = db.getCollection("Messages");
 		Document d = new Document();
+		
 		d.append("author_id", id);
 		MongoCursor<Document> cursor = mc.find(d).iterator();
 
 		while (cursor.hasNext()) {
 
 			Document ok = cursor.next();
+			obj.put(ok.getString("author_name"), ok.getString("message"));
 			System.out.println(ok);
 		}
+		}catch(JSONException e)
+		{
+			e.printStackTrace();
+		}
+		return obj;
 	}
 	public static void deleteMessage(String id_message)
 	{

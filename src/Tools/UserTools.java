@@ -18,7 +18,7 @@ public class UserTools {
 			Connection c = DataBase.getMySQLConnection();
 
 			String q = "Insert into Users values(null, '" + login + "', PASSWORD('" + password + "'), '" + prenom
-					+ "', '" + nom + "', '" + sexe + "','" + date_naissance + "','" + email + "'));";
+					+ "', '" + nom + "', '" + sexe + "','" + date_naissance + "','" + email + "');";
 			Statement s = c.createStatement();
 			int rs = s.executeUpdate(q);
 			s.close();
@@ -41,7 +41,7 @@ public class UserTools {
 		try {
 			Connection c = DataBase.getMySQLConnection();
 			Statement s = c.createStatement();
-			String q = "SELECT * FROM user WHERE user_login='" + login + "';";
+			String q = "SELECT * FROM Users WHERE login='" + login + "';";
 			ResultSet rs = s.executeQuery(q);
 			userExists = false;
 			if (rs.next()) {
@@ -59,7 +59,7 @@ public class UserTools {
 		try {
 			Connection c = DataBase.getMySQLConnection();
 			Statement s = c.createStatement();
-			String q = "SELECT * FROM user WHERE login='" + login + "' and password=PASSWORD('"+ pass +"');";
+			String q = "SELECT * FROM Users WHERE login='" + login + "' and password=PASSWORD('"+ pass +"');";
 			ResultSet rs = s.executeQuery(q);
 			userExists = false;
 			if (rs.next()) {
@@ -73,21 +73,22 @@ public class UserTools {
 	}
 
 	public static boolean keyLogin(String login, String key) {
-		boolean userExists = false;
+		boolean check = false;
 		try {
 			Connection c = DataBase.getMySQLConnection();
 			Statement s = c.createStatement();
-			String q = "SELECT * FROM Session WHERE login='" + login + "' and password='"+ key +"');";
+			String q = "SELECT * FROM Session WHERE login='" + login + "' and clef='"+ key +"';";
 			ResultSet rs = s.executeQuery(q);
-			userExists = false;
+			
 			if (rs.next()) {
-				userExists = true;
+				check = true;
 			}
 
 		} catch (SQLException e) {
+			e.printStackTrace();
 
 		}
-		return userExists;
+		return check;
 	}
 
 
@@ -97,8 +98,7 @@ public class UserTools {
 			boolean res;
 			// Class.forName("com.mysql.jdbc.Driver").newInstance();
 			Connection c = DataBase.getMySQLConnection();
-
-			String q = "Insert into Session values(null, '" + login + "', key='" + clef + "');";
+			String q = "Insert into Session values('" + login + "', '" + clef + "');";
 			Statement s = c.createStatement();
 			int rs = s.executeUpdate(q);
 			s.close();
@@ -118,7 +118,7 @@ public class UserTools {
 			// Class.forName("com.mysql.jdbc.Driver").newInstance();
 			Connection c = DataBase.getMySQLConnection();
 
-			String q = "Delete from Session where login='" + login + "' and key='" + key + "';";
+			String q = "Delete from Session where login='" + login + "' and clef='" + key + "';";
 			Statement s = c.createStatement();
 			int rs = s.executeUpdate(q);
 			s.close();

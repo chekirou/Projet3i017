@@ -40,7 +40,7 @@ public class User {
 				}
 				else
 				{
-					obj = new JSONObject().put("creation ", "echouée");
+					obj = new JSONObject().put("creation ", "echouï¿½e");
 				}
 				
 			} catch (JSONException e) {
@@ -132,7 +132,6 @@ public class User {
 			try {
 				obj = new JSONObject();
 				obj.put("deconnection", "failed ");
-				Tools.UserTools.logoutBd(login);
 				
 			} catch (JSONException e) {
 				// TODO Auto-generated catch block

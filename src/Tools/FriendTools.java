@@ -43,7 +43,7 @@ public class FriendTools {
 			// Class.forName("com.mysql.jdbc.Driver").newInstance();
 			Connection c = DataBase.getMySQLConnection();
 
-			String q = "Insert into Friendships values(null, '" + follower + "', key='" + followed + "');";
+			String q = "Insert into friendships values('" + follower + "', '" + followed + "');";
 			Statement s = c.createStatement();
 			int rs = s.executeUpdate(q);
 			s.close();
