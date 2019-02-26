@@ -28,57 +28,48 @@ public class MessageTools {
 		return true;
 
 	}
+
 	public static JSONObject listMessages(int id) {
 		JSONObject obj = new JSONObject();
-		try
-		{
-		MongoDatabase db = MongoTools.getConnexionMongo();
-		MongoCollection<Document> mc = db.getCollection("Messages");
-		Document d = new Document();
-		
-		d.append("author_id", id);
-		MongoCursor<Document> cursor = mc.find(d).iterator();
+		try {
+			MongoDatabase db = MongoTools.getConnexionMongo();
+			MongoCollection<Document> mc = db.getCollection("Messages");
+			Document d = new Document();
 
-		while (cursor.hasNext()) {
+			d.append("author_id", id);
+			MongoCursor<Document> cursor = mc.find(d).iterator();
 
-			Document ok = cursor.next();
-			obj.put(ok.getString("author_name"), ok.getString("message"));
-			System.out.println(ok);
-		}
-		}catch(JSONException e)
-		{
+			while (cursor.hasNext()) {
+
+				Document ok = cursor.next();
+				obj.append(ok.getString("author_name"), ok.getString("message"));
+				System.out.println(ok);
+			}
+		} catch (JSONException e) {
 			e.printStackTrace();
 		}
 		return obj;
 	}
-	public static void deleteMessage(String id_message)
-	{
+
+	public static void deleteMessage(String id_message) {
 		MongoDatabase db = MongoTools.getConnexionMongo();
 		MongoCollection<Document> mc = db.getCollection("Messages");
 		Document d = new Document();
-		d.append("_id",new ObjectId(id_message));
+		d.append("_id", new ObjectId(id_message));
 		mc.deleteOne(d);
-		
+
 	}
-	
 
-	/*public static boolean existsMessage(String id_message) {
-		// TODO Auto-generated method stub
-		boolean userExists = false;
-		try {
-			Connection c = DataBase.getMySQLConnection();
-			Statement s = c.createStatement();
-			String q = "SELECT * FROM  WHERE _id='" + new ObjectId(id_message) + "';";
-			ResultSet rs = s.executeQuery(q);
-			userExists = false;
-			if (rs.next()) {
-				userExists = true;
-			}
-
-		} catch (SQLException e) {
-
-		}
-		return userExists;
-		return false;
-	}*/
+	/*
+	 * public static boolean existsMessage(String id_message) { // TODO
+	 * Auto-generated method stub boolean userExists = false; try { Connection c =
+	 * DataBase.getMySQLConnection(); Statement s = c.createStatement(); String q =
+	 * "SELECT * FROM  WHERE _id='" + new ObjectId(id_message) + "';"; ResultSet rs
+	 * = s.executeQuery(q); userExists = false; if (rs.next()) { userExists = true;
+	 * }
+	 * 
+	 * } catch (SQLException e) {
+	 * 
+	 * } return userExists; return false; }
+	 */
 }

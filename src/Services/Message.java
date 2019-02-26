@@ -62,16 +62,13 @@ public class Message {
 			// renvoie la liste des messages
 			
 			// hisLogin dans les amis de myLogin
-			try {
+			
 				int id = ServiceTools.getID(login);
 				obj = MessageTools.listMessages(id);
 				
-				obj.put("messages ok", "ok ");
+				//obj.put("messages ok", "ok ");
 				
-			} catch (JSONException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			
 		}
 		
 		return obj;

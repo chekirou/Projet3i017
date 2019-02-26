@@ -12,5 +12,6 @@
 	<classpathentry kind="lib" path="/users/nfs/Etu9/3801679/Téléchargements/mongo-java-driver-3.10.1.jar"/>
 	<classpathentry kind="lib" path="/users/nfs/Etu9/3801679/Téléchargements/mysql-connector-java-5.1.18-bin.jar"/>
 	<classpathentry kind="lib" path="/users/nfs/Etu9/3801679/Téléchargements/servlet-api.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
