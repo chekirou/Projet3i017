@@ -21,10 +21,6 @@ public class User {
 			obj = Tools.ServiceTools.refused(3);
 			
 		}
-		else if(!Tools.UserTools.checkPassword(password))
-		{
-			obj = Tools.ServiceTools.refused(2);
-		}
 		else if(Tools.UserTools.existsUser(login))
 		{
 			obj = Tools.ServiceTools.refused(1);
@@ -32,15 +28,16 @@ public class User {
 		else
 		{
 			//ajouter a la base de donnees 
-			boolean res = UserTools.ajout_base(nom, prenom, login, password, sexe, date_naissance, email);
+			JSONObject res = UserTools.ajout_base(nom, prenom, login, password, sexe, date_naissance, email);
 			try {
-				if(res)
+				if(res == null)
 				{
 					obj = new JSONObject().put("creation ", "ok");
 				}
 				else
 				{
-					obj = new JSONObject().put("creation ", "echou�e");
+					res.append("creation ", "echou�e");
+					obj = res;
 				}
 				
 			} catch (JSONException e) {
@@ -52,7 +49,7 @@ public class User {
 		return obj;
 	}
 	
-	public static JSONObject login(String login, String password)
+	public static JSONObject login(String login, String password, boolean root)
 	{
 		
 		JSONObject obj = null;
@@ -77,7 +74,7 @@ public class User {
 			obj = new JSONObject();
 			
 			try {
-				if(UserTools.addSession(login, clef))
+				if(UserTools.addSession(login, clef, root))
 				{
 					obj.put("connexion", "ok ");
 					obj.put("key", clef);
@@ -112,10 +109,6 @@ public class User {
 		else if(!Tools.UserTools.existsUser(login))
 		{
 			obj = Tools.ServiceTools.refused(4);
-		}
-		else if(!Tools.UserTools.keyLogin(login, key))
-		{
-			obj = Tools.ServiceTools.refused(7);
 		}
 		else if (Tools.UserTools.deleteSession(login,key)) {
 			try {

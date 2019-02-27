@@ -1,5 +1,6 @@
 package DataBase;
 
+import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
@@ -7,7 +8,6 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import com.mysql.jdbc.Connection;
 
 public class DataBase {
 	private DataSource dataSource;
@@ -26,7 +26,7 @@ public class DataBase {
 		}
 	}
 	public  Connection getConnection()throws SQLException {
-	return (Connection) dataSource.getConnection();
+	return  dataSource.getConnection();
 	}
 	public static Connection getMySQLConnection()throws SQLException {
 		if(!DBStatic.mysql_pooling) {

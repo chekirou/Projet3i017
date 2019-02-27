@@ -15,6 +15,7 @@ public class Login extends HttpServlet{
 	{
 		String login = request.getParameter("login");
 		String password = request.getParameter("password");
+		 boolean b =Boolean.parseBoolean(request.getParameter("root"));
 		response.setContentType("application/json");
 		PrintWriter out = null;
 		try {
@@ -22,7 +23,7 @@ public class Login extends HttpServlet{
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 
-		out.print(User.login(login, password));
+		out.print(User.login(login, password, b));
 		out.flush();
 		
 	}

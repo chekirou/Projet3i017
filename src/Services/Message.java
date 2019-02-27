@@ -1,5 +1,9 @@
 package Services;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -30,7 +34,11 @@ public class Message {
 			// recuperer l'id
 			int id = ServiceTools.getID(myLogin);
 			// ajouter dans la base de données le message 
-			MessageTools.addMessage(id, myLogin, Message);
+			GregorianCalendar cal = new java.util.GregorianCalendar();
+			cal.add(Calendar.HOUR, -1);
+			Date d = cal.getTime();
+			System.out.println(d);
+			MessageTools.addMessage(id, myLogin, Message, d);
 			try {
 				obj = new JSONObject();
 				obj.put("ajout du message", "ok ");
@@ -99,6 +107,7 @@ public class Message {
 		{
 			// supprimer dans la base de données le message 
 			
+			MessageTools.deleteMessage(MessageId);
 			try {
 				obj = new JSONObject();
 				obj.put("suppression du message", "ok ");

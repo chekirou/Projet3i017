@@ -12,7 +12,7 @@ public class Friend {
 		if (myLogin == null || hisLogin == null || key == null) {
 			obj = Tools.ServiceTools.refused(6);
 
-		} else if (!Tools.UserTools.existsUser(myLogin)) {
+		} else if (!Tools.UserTools.existsUser(myLogin) || !Tools.UserTools.existsUser(hisLogin)) {
 			obj = Tools.ServiceTools.refused(4);
 		} else if (!Tools.UserTools.keyLogin(myLogin, key)) {
 			obj = Tools.ServiceTools.refused(7);
@@ -71,7 +71,12 @@ public class Friend {
 			obj = Tools.ServiceTools.refused(4);
 		} else if (!Tools.UserTools.keyLogin(myLogin, key)) {
 			obj = Tools.ServiceTools.refused(7);
-		} else {
+		}
+		else if(!FriendTools.dejaAmis(myLogin, hisLogin))
+		{
+			obj = Tools.ServiceTools.refused(10);
+		}
+		else {
 			// suprimer le friend dans la base de données
 			FriendTools.unfollow(myLogin,hisLogin);
 			try {

@@ -4,16 +4,20 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.mysql.jdbc.Connection;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.sql.Connection;
 
 import DataBase.DataBase;
 
 public class UserTools {
-	public static boolean ajout_base(String nom, String prenom, String login, String password, String sexe,
+	public static JSONObject ajout_base(String nom, String prenom, String login, String password, String sexe,
 			String date_naissance, String email) {
-
+		JSONObject obj = new JSONObject();
 		try {
 			boolean res;
+			
 			// Class.forName("com.mysql.jdbc.Driver").newInstance();
 			Connection c = DataBase.getMySQLConnection();
 
@@ -23,18 +27,21 @@ public class UserTools {
 			int rs = s.executeUpdate(q);
 			s.close();
 			c.close();
-			return true;
+			return null;
 		} catch (Exception e) {
 			e.printStackTrace();
-			return false;
+			try {
+				obj.put("error", e.getMessage());
+			} catch (JSONException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			return obj;
 		}
 
 	}
 
-	public static boolean checkPassword(String password) {
-		return true;
 
-	}
 
 	public static boolean existsUser(String login) {
 		boolean userExists = false;
@@ -47,6 +54,9 @@ public class UserTools {
 			if (rs.next()) {
 				userExists = true;
 			}
+			rs.close();
+			c.close();
+			s.close();
 
 		} catch (SQLException e) {
 
@@ -65,6 +75,9 @@ public class UserTools {
 			if (rs.next()) {
 				userExists = true;
 			}
+			rs.close();
+			s.close();
+			c.close();
 
 		} catch (SQLException e) {
 
@@ -77,28 +90,35 @@ public class UserTools {
 		try {
 			Connection c = DataBase.getMySQLConnection();
 			Statement s = c.createStatement();
-			String q = "SELECT * FROM Session WHERE login='" + login + "' and clef='"+ key +"';";
+			String q = "SELECT * FROM Session WHERE login='" + login + "' and clef='"+ key +"' ;";
 			ResultSet rs = s.executeQuery(q);
 			
 			if (rs.next()) {
 				check = true;
 			}
+			s.close();
+			c.close();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 
 		}
+		if(check)
+		{
+			check = ServiceTools.checkdate(login, key);
+		}
+		
 		return check;
 	}
 
 
-	public static boolean addSession(String login, String clef) {
+	public static boolean addSession(String login, String clef, boolean root) {
 		// TODO Auto-generated method stub
 		try {
 			boolean res;
 			// Class.forName("com.mysql.jdbc.Driver").newInstance();
 			Connection c = DataBase.getMySQLConnection();
-			String q = "Insert into Session values('" + login + "', '" + clef + "');";
+			String q = "Insert into Session values('" + login + "', '" + clef + "', now() ,'" +( (root)? 1: 0)+ "' );";
 			Statement s = c.createStatement();
 			int rs = s.executeUpdate(q);
 			s.close();
@@ -129,5 +149,9 @@ public class UserTools {
 			return false;
 		}
 	}
+
+
+
+	
 
 }

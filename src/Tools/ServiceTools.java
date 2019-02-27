@@ -15,9 +15,10 @@ import javax.crypto.SecretKey;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.mysql.jdbc.Connection;
+import java.sql.Connection;
 
 import DataBase.DataBase;
+import Services.User;
 
 public class ServiceTools {
 
@@ -47,6 +48,9 @@ public class ServiceTools {
 			break;
 		case 8:
 			s = "message n'existe pas";
+			break;
+		case 10:
+			s= "ils ne sont pas amis";
 			break;
 		}
 
@@ -132,6 +136,56 @@ public class ServiceTools {
 
 		}	
 		return res;
+	}
+
+	public static void updateExpiration(String login) {
+		// TODO Auto-generated method stub
+		
+	try
+	{
+		Connection c = DataBase.getMySQLConnection();
+		String q = "update Session set date_exp=now() where login='"+login+"'";
+		Statement s = c.createStatement();
+		int rs = s.executeUpdate(q);
+		s.close();
+		c.close();
+		
+	} catch (Exception e) {
+		e.printStackTrace();
+		
+	}
+	}
+
+	public static boolean checkdate(String login, String key) {
+		// TODO Auto-generated method stub
+		
+		boolean check = false;
+		try {
+			Connection c = DataBase.getMySQLConnection();
+			Statement s = c.createStatement();
+			String q = "SELECT * FROM Session WHERE login='" + login + "' and clef='"+ key +"'and date_exp+3600> now() ;";
+			ResultSet rs = s.executeQuery(q);
+			
+			if (rs.next()) {
+				check = true;
+			}
+			s.close();
+			c.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		}
+		if(check)
+		{
+			ServiceTools.updateExpiration(login);
+		}
+		else
+		{
+			User.logout(login, key);
+		}
+		
+		return check;
 	}
 
 }

@@ -3,6 +3,7 @@ package Tools;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 
 import org.bson.Document;
 import org.bson.types.ObjectId;
@@ -17,13 +18,14 @@ import com.mysql.jdbc.Connection;
 import DataBase.DataBase;
 
 public class MessageTools {
-	public static boolean addMessage(int id, String login, String message) {
+	public static boolean addMessage(int id, String login, String message, Date date) {
 		MongoDatabase mb = MongoTools.getConnexionMongo();
 		MongoCollection<Document> mc = mb.getCollection("Messages");
 		Document d = new Document();
 		d.append("author_id", id);
 		d.append("author_name", login);
 		d.append("message", message);
+		d.append("date", date);
 		mc.insertOne(d);
 		return true;
 

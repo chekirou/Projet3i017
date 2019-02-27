@@ -1,5 +1,6 @@
 package Tools;
 
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -9,9 +10,10 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import com.mysql.jdbc.Connection;
+
 
 import DataBase.DataBase;
+import Services.User;
 
 public class FriendTools {
 	public static JSONObject listFriends(String login)
@@ -28,6 +30,7 @@ public class FriendTools {
 				liste.add(rs.getString("login2"));
 			}
 			obj.put("friends", liste);
+			rs.close();
 			s.close();
 			c.close();
 
@@ -73,5 +76,29 @@ public class FriendTools {
 			e.printStackTrace();
 			return false;
 		}
+	}
+
+	public static boolean dejaAmis(String myLogin, String hisLogin) {
+		// TODO Auto-generated method stub
+		boolean check = false;
+		try {
+			Connection c = DataBase.getMySQLConnection();
+			Statement s = c.createStatement();
+			String q = "SELECT * FROM friendships WHERE  login1='" + myLogin + "' and login2='" + hisLogin + "';";
+			ResultSet rs = s.executeQuery(q);
+			
+			if (rs.next()) {
+				check = true;
+			}
+			rs.close();
+			s.close();
+			c.close();
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+
+		}
+		
+		return check;
 	}
 }
