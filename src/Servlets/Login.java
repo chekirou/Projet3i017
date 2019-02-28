@@ -23,7 +23,7 @@ public class Login extends HttpServlet{
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 
-		out.print(User.login(login, password, b));
+		out.print(User.login(login, password));
 		out.flush();
 		
 	}

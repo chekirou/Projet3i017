@@ -112,13 +112,13 @@ public class UserTools {
 	}
 
 
-	public static boolean addSession(String login, String clef, boolean root) {
+	public static boolean addSession(String login, String clef) {
 		// TODO Auto-generated method stub
 		try {
 			boolean res;
 			// Class.forName("com.mysql.jdbc.Driver").newInstance();
 			Connection c = DataBase.getMySQLConnection();
-			String q = "Insert into Session values('" + login + "', '" + clef + "', now() ,'" +( (root)? 1: 0)+ "' );";
+			String q = "Insert into Session values('" + login + "', '" + clef + "', now() );";
 			Statement s = c.createStatement();
 			int rs = s.executeUpdate(q);
 			s.close();

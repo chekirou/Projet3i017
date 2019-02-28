@@ -12,6 +12,6 @@ public class testDeleteMessage {
 	@Test
 	public void test()
 	{
-		System.out.println(Message.deleteMessage("curls", "60A1342F48CB6D10E0677BCD05A45702", "5c758d89ab971354993b2017"));
+		System.out.println(Message.deleteMessage("rebecca", "187C119D3286999D01AB7D8867912432", "5c780cf0a3c6af041172e394"));
 	}
 }

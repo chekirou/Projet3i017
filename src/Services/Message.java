@@ -35,7 +35,7 @@ public class Message {
 			int id = ServiceTools.getID(myLogin);
 			// ajouter dans la base de données le message 
 			GregorianCalendar cal = new java.util.GregorianCalendar();
-			cal.add(Calendar.HOUR, -1);
+			cal.add(Calendar.HOUR, 0);
 			Date d = cal.getTime();
 			System.out.println(d);
 			MessageTools.addMessage(id, myLogin, Message, d);

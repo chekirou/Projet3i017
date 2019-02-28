@@ -26,11 +26,11 @@ public class DataBase {
 		}
 	}
 	public  Connection getConnection()throws SQLException {
-	return  dataSource.getConnection();
+		return  dataSource.getConnection();
 	}
 	public static Connection getMySQLConnection()throws SQLException {
 		if(!DBStatic.mysql_pooling) {
-			return (Connection) (DriverManager.getConnection("jdbc:mysql://"+ "localhost" +"/"+DBStatic.mysql_db, 
+			return  (DriverManager.getConnection("jdbc:mysql://"+ "localhost" +"/"+DBStatic.mysql_db, 
 					DBStatic.mysql_username, DBStatic.mysql_password));
 		}
 		else

@@ -49,7 +49,7 @@ public class User {
 		return obj;
 	}
 	
-	public static JSONObject login(String login, String password, boolean root)
+	public static JSONObject login(String login, String password)
 	{
 		
 		JSONObject obj = null;
@@ -74,7 +74,7 @@ public class User {
 			obj = new JSONObject();
 			
 			try {
-				if(UserTools.addSession(login, clef, root))
+				if(UserTools.addSession(login, clef))
 				{
 					obj.put("connexion", "ok ");
 					obj.put("key", clef);

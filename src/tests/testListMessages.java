@@ -10,6 +10,7 @@ public class testListMessages {
 	
 	public void test()
 	{
-		System.out.println(Message.listMessages("curls"));
+		System.out.println(Message.listMessages("german"));
+		
 	}
 }
