@@ -4,7 +4,7 @@ class MainPage extends Component {
   constructor()
   {
   	super();
-  	this.state = {page_Courante : 'connexion', connecté: false};
+  	this.state = {page_Courante : 'connexion', connecté: true};
   	this.getConnected = this.getConnected.bind(this);
   	this.setLogout = this.setLogout.bind(this);
   }

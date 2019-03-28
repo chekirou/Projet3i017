@@ -1,29 +1,34 @@
 import React, { Component } from 'react';
+import Logout from './Logout';
 class Login extends Component {
   constructor(props)
   {
   	super(props);
-  	this.state = props
+  	this.handleSubmit = this.handleSubmit.bind(this);
+  }
+  handleSubmit() {
+    this.props.attribut()
+    return( <h1>zrlkjrmv</h1>);
   }
   render() {
     	return (
 
-				<div id="connexion_main">
+				<div>
 				    <h1> Ouvrir une session</h1>
-				        <FORM method="get"  action={this.state.attribut}>
-				        <div class="ids">
+				        <form onSubmit={this.props.attribut()}>
+				        <div className="ids">
 				            <span>login</span>
-				            <INPUT type="text"  name="login"/>
+				            <input type="text"  name="login"/>
 				        </div>
 
-				        <div class="ids">
+				        <div className="ids">
 				            <span>mot de passe</span>
-				            <INPUT type="password " name="password"/>
+				            <input type="password " name="password"/>
 				        </div>
-				        <div class ="buttons"> 
-				            <INPUT type="submit"  value="connexion"/>
+				        <div className ="buttons"> 
+				            <input type="submit"  value="connexion"/>
 				        </div>
-				        <div class="links"> 
+				        <div className="links"> 
 				            <div id="link1">
 				                <a href="https://www.google.com/"> mot de passe perdu </a>
 				            </div>
@@ -31,9 +36,9 @@ class Login extends Component {
 				                <a href="https://www.google.com/"> pas encore inscrit ? </a>
 				                </div>
 				        </div>
-				    </FORM>
+				    </form>
 				</div>
-    	
+    		
     	
     	
     	);
