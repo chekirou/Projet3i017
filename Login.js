@@ -1,47 +1,52 @@
 import React, { Component } from 'react';
-import Logout from './Logout';
+import './Login.css';
 class Login extends Component {
   constructor(props)
   {
   	super(props);
-  	this.handleSubmit = this.handleSubmit.bind(this);
   }
-  handleSubmit() {
-    this.props.attribut()
-    return( <h1>zrlkjrmv</h1>);
-  }
-  render() {
-    	return (
+render()
+{
+		return (
+			<div className="conteneur">
+				<div className="conteneurLogin">
+					<div className="wraperLogin">
+						<form className="formulaire" onSubmit={this.props.connect}>
+							<div className="titre">
+								<img src="https://www.brandcrowd.com/gallery/brands/pictures/picture12632215544704.jpg" />
+							</div>
+							<div className="divLogin">
+								<label className="loginLabel"> Login </label>
+								<input className="inputLogin" type="text" name="Login"/>
+							</div>
 
-				<div>
-				    <h1> Ouvrir une session</h1>
-				        <form onSubmit={this.props.attribut()}>
-				        <div className="ids">
-				            <span>login</span>
-				            <input type="text"  name="login"/>
-				        </div>
+							<div className="divPass">
+								<label className="pass"> Mot de passe </label>
+								<input className="inputPass" type="password" name="pass"/>
+							</div>
+							<div className="bouton-conteneur">
+								<div className="wraperBouton">
+									<input className="bouton" type="submit" value='connexion'/>
+								</div>
+								
+							</div>
+							<div class="text-center p-t-115">
+								<span class="texte1">
+									Pas encore inscrit? 
+								</span>
 
-				        <div className="ids">
-				            <span>mot de passe</span>
-				            <input type="password " name="password"/>
-				        </div>
-				        <div className ="buttons"> 
-				            <input type="submit"  value="connexion"/>
-				        </div>
-				        <div className="links"> 
-				            <div id="link1">
-				                <a href="https://www.google.com/"> mot de passe perdu </a>
-				            </div>
-				            <div id="link2">
-				                <a href="https://www.google.com/"> pas encore inscrit ? </a>
-				                </div>
-				        </div>
-				    </form>
+								<a class="texte2" href="#">
+									   inscription
+								</a>
+							</div>
+							<div>
+								<a className="texte2" href="https://mail.google.com"> mot de passe oublié </a>
+							</div>
+						</form>	
+					</div>
 				</div>
-    		
-    	
-    	
-    	);
+			</div>
+			)
   }
 }
 
