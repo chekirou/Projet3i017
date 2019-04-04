@@ -21,10 +21,12 @@
   	border: 2px solid #adadad ;
   	display: block;
   	background: transparent;
-  	padding: 0 5px;
+  	padding: 9px 9px;
   	margin-top: 5px;
   	margin-left: 10px;
   	margin-right: 10px;
+  	
+  	
 
 }
 .twister
@@ -33,7 +35,7 @@
 	margin-bottom: 5px;
 	margin-left: 36%;
 	font-family: Helvetica;
-  font-size: 15px;
+  font-size: 10px;
   color: #fff;
   line-height: 1.2;
   border-radius: 10px;
@@ -45,4 +47,5 @@
   padding: 0 20px;
   width: 25%;
   height: 30px;
+  text-align: center;
 }
