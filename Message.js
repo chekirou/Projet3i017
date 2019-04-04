@@ -7,7 +7,7 @@ const Message = ({ pseudo, image, message }) => (
   <div className="tweet">
     	<img className="photo" src={image}/>
     <div className="contenu">
-    	<div className="pseudo">{pseudo} </div>
+    	<div className="pseudo_message">{pseudo} </div>
     	<div className="message">
     		<p> {message} </p>
     	</div>

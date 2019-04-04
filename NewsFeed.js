@@ -8,12 +8,11 @@ class NewsFeed extends Component {
 	render()
 	{
 		return (
-			<div className="les_messages">
-				{this.props.tweets.map(({pseudo, image, message}) =>
+			
+				this.props.tweets.map(({pseudo, image, message}) =>
 					Message({pseudo, image, message})
 					
-				)}
-			</div>
+				)
 
 
 			)
