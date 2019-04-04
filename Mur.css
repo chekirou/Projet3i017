@@ -1,5 +1,8 @@
 
+body
+{background-color: #f2f2f2;
 
+}
 .tout
 {
 	background-color: #f2f2f2;
@@ -18,4 +21,8 @@
 
 	display: flex;
 	flex-direction: column;
+}
+.main
+{
+	margin-left: 10px;
 }
