@@ -13,7 +13,7 @@ render()
 					<div className="wraperLogin">
 						<form className="formulaire" onSubmit={this.props.connect}>
 							<div className="titre">
-								<img src="https://www.brandcrowd.com/gallery/brands/pictures/picture12632215544704.jpg" />
+								<img src="https://www.brandcrowd.com/gallery/brands/pictures/picture12632215544704.jpg"/>
 							</div>
 							<div className="divLogin">
 								<label className="loginLabel"> Login </label>

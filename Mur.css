@@ -1,0 +1,21 @@
+
+
+.tout
+{
+	background-color: #f2f2f2;
+	display: flex;
+	flex-direction: column;
+	
+}
+.part2
+{
+	margin-top: 50px;
+	display: flex;
+	flex-direction: row;
+}
+.side
+{
+
+	display: flex;
+	flex-direction: column;
+}

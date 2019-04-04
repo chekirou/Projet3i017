@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import Login from './Login';
 import Logout from './Logout';
-
+import Mur from './Mur'
 class MainPage extends Component {
   constructor()
   {
@@ -24,14 +24,16 @@ class MainPage extends Component {
   }
   render()
   {
-
   switch(this.state.current_page) {
     case 'connexion':
       return <Login connect= {this.connect} />;
     case 'logout':
       return <Logout disconnect={this.disconnect} />;
     case 'posts':
-      return <p> en cours de fabrication </p>;
+      return <div>
+                  <Mur/>
+              </div>
+
     default:
       return null;
   }
