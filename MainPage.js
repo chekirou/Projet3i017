@@ -26,19 +26,20 @@ class MainPage extends Component {
 
   connect({login, password})
   {
-  	alert("connect " + login + "   " + password)
-  	/*const logs = axios.get('http://localhost:8080/Twister/User/Login?login=' + login + '&password=' + password)
   	
+  	const logs = axios.get('http://localhost:8080/Twister/User/Login?login=' + login + '&password=' + password)
+  	alert(logs.connexion)
   	if(logs.connexion == "ok")
   	{
+  		alert("vous etes connecté ")
   		this.setState({current_page : 'posts', connected: true, key:this.logs.key, login: login })
   	}
   	else
-  	{*/
-      //alert("login ou mot de passe faux")
-      this.setState({current_page : 'posts', key: "nmjùklnkln", login: login})
+  	{
+      alert("login ou mot de passe faux")
+      //this.setState({current_page : 'posts', key: "nmjùklnkln", login: login})
   		
-  	//}
+  	}
   }
   disconnect()
   {
