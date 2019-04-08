@@ -4,16 +4,22 @@ class Login extends Component {
   constructor(props)
   {
   	super(props);
-	this.handleChange = this.handleChange.bind(this);
+	this.handleInputChange = this.handleInputChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   
-  handleChange(event) {
-    this.setState({login: event.target.value});
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+    });
   }
 
-  handleSubmit(event) {
-    this.connect()
+  handleSubmit() {
+    this.props.connect(this.state)
   }
   
 render()
@@ -28,12 +34,12 @@ render()
 							</div>
 							<div className="divLogin">
 								<label className="loginLabel"> Login </label>
-								<input className="inputLogin" type="text" ref={(input) => this.textInput = input}/>
+								<input className="inputLogin" type="text" name="login" onChange={this.handleInputChange}/>
 							</div>
 
 							<div className="divPass">
 								<label className="pass"> Mot de passe </label>
-								<input className="inputPass" type="password" ref="password"/>
+								<input className="inputPass" type="password" name="password" onChange={this.handleInputChange}/>
 							</div>
 							<div className="bouton-conteneur">
 								<div className="wraperBouton">

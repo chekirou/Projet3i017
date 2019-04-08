@@ -4,9 +4,13 @@ class Topbar extends Component {
   constructor(props)
   {
   	super(props);
+  	this.handleDeco = this.handleDeco.bind(this);
   }
-render()
-{
+  handleDeco(event) {
+    this.props.signOut()
+  }
+	render()
+	{
 	return(
 		<div className="topbarConteneur">
 			<div className="topbarConteneur2">
@@ -21,7 +25,7 @@ render()
 							<input className="inputSearch" type="text" name="search"/>
 							<input className="bouton" type="hidden"/>
 						</form>
-						<img id="deco"src="https://png.pngtree.com/svg/20160517/96e893609e.png" alt="deconnexion"/>
+						<img id="deco" src="https://png.pngtree.com/svg/20160517/96e893609e.png" alt="deconnexion" onClick={this.handleDeco}/>
 						
 					</div>
 				</div>
