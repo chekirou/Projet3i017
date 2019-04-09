@@ -9,7 +9,7 @@ class MainPage extends Component {
   constructor()
   {
   	super()
-  	this.state = {current_page : 'connexion', connected: false, key:""}
+  	this.state = {current_page : 'connexion', connected: false, key:"", connexion:""}
   	this.setState(this.state)
   	this.connect = this.connect.bind(this)
   	this.disconnect = this.disconnect.bind(this)
@@ -27,19 +27,11 @@ class MainPage extends Component {
   connect({login, password})
   {
   	
-  	const logs = axios.get('http://localhost:8080/Twister/User/Login?login=' + login + '&password=' + password)
-  	alert(logs.connexion)
-  	if(logs.connexion == "ok")
-  	{
-  		alert("vous etes connecté ")
-  		this.setState({current_page : 'posts', connected: true, key:this.logs.key, login: login })
-  	}
-  	else
-  	{
-      alert("login ou mot de passe faux")
-      //this.setState({current_page : 'posts', key: "nmjùklnkln", login: login})
-  		
-  	}
+  	/*axios.get('https://www.google.com/search?q=twister&ie=utf-8&oe=utf-8&client=firefox-b-e').then(response => {
+  	this.setSate({current_page: response.data["connexion"] === 'ok' ? 'posts' : 'login'})
+  	
+  	});*/
+
   }
   disconnect()
   {
