@@ -35,10 +35,8 @@ public class test {
 		{
 			
 		}*/
-		System.out.println(Message.addMessage("curls", "60A1342F48CB6D10E0677BCD05A45702", "haloo"));
-		System.out.println(Message.addMessage("curls", "60A1342F48CB6D10E0677BCD05A45702", "je suis la "));
-		System.out.println(Message.addMessage("curls", "60A1342F48CB6D10E0677BCD05A45702", "youhou"));
-
+		System.out.println("foevk,ervok");
+		
 	}
 
 }
