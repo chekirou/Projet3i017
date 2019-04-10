@@ -65,4 +65,4 @@ render()
   }
 }
 
-export default Login;
+export default Inscription;
