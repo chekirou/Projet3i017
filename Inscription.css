@@ -1,0 +1,362 @@
+
+*
+{
+	margin: 5px;
+	padding: 5px;
+    box-sizing: border-box;
+}
+
+body, html {
+	height: 100%;
+	font-family: Helvetica, sans-serif;
+}
+a
+{
+	font-family: Helvetica;
+	font-size: 14px;
+	line-height: 1.7;
+	color: #666666;
+	margin: 0px;
+}
+h1 {
+	margin: 0px;
+}
+
+a
+{
+	font-family: Helvetica;
+	font-size: 14px;
+	line-height: 1.7;
+	color: #666666;
+	margin: 0px;
+}
+h1 {
+	margin: 0px;
+}
+input {
+	outline: none;
+    border: none;
+	
+}
+
+
+
+
+.texte1 {
+  font-family: Helvetica;
+  font-size: 13px;
+  color: #666666;
+  line-height: 1.5;
+  margin-right: 5px;
+}
+
+.texte2 {
+  font-family: Helvetica;
+  font-size: 13px;
+  color: #333333;
+  line-height: 1.5;
+}
+
+
+
+
+.texte1 {
+  font-family: Helvetica;
+  font-size: 13px;
+  color: #666666;
+  line-height: 1.5;
+  margin-right: 5px;
+}
+
+.texte2 {
+  font-family: Helvetica;
+  font-size: 13px;
+  color: #333333;
+  line-height: 1.5;
+}
+
+.conteneur {
+  width: 100%;
+  margin: 0 auto;
+}
+
+.conteneurInscription {
+  width: 100%;  
+  min-height: 100vh;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  background: #f2f2f2;  
+}
+
+.wraperInscription {
+  width: 450px;
+  background: #fff;
+  border-radius: 10px;
+  overflow: hidden;
+  padding: 25px 55px 33px 55px;
+
+  box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.formulaire
+{
+	width : 100%;
+}
+
+.titre
+{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+img
+{
+	width: 75%;
+
+}
+
+.divLastname {
+  width: 100%;
+  position: relative;
+  border-bottom: 2px solid #adadad;
+  margin-bottom: 37px;
+}
+
+
+.divName {
+  width: 100%;
+  position: relative;
+  border-bottom: 2px solid #adadad;
+  margin-bottom: 37px;
+}
+
+.divLogin {
+  width: 100%;
+  position: relative;
+  border-bottom: 2px solid #adadad;
+  margin-bottom: 37px;
+}
+
+
+.divPass
+{
+	width: 100%;
+  	position: relative;
+  	border-bottom: 2px solid #adadad;
+  	margin-bottom: 37px;
+}
+
+
+.divSexe {
+  width: 100%;
+  position: relative;
+  border-bottom: 2px solid #adadad;
+  margin-bottom: 37px;
+}
+
+
+.divDate_naissance {
+  width: 100%;
+  position: relative;
+  border-bottom: 2px solid #adadad;
+  margin-bottom: 37px;
+}
+
+.divEmail {
+  width: 100%;
+  position: relative;
+  border-bottom: 2px solid #adadad;
+  margin-bottom: 20px;
+}
+
+.inputLastname  {
+  font-family: Poppins-Regular;
+  font-size: 20px;
+  color: #555555;
+  line-height: 1.2;
+
+  display: block;
+  width: 100%;
+  height: 45px;
+  background: transparent;
+  padding: 0 5px;
+}
+
+.inputName  {
+  font-family: Poppins-Regular;
+  font-size: 20px;
+  color: #555555;
+  line-height: 1.2;
+
+  display: block;
+  width: 100%;
+  height: 45px;
+  background: transparent;
+  padding: 0 5px;
+}
+
+
+.inputLogin  {
+  font-family: Poppins-Regular;
+  font-size: 20px;
+  color: #555555;
+  line-height: 1.2;
+
+  display: block;
+  width: 100%;
+  height: 45px;
+  background: transparent;
+  padding: 0 5px;
+}
+.inputPass
+{
+	font-family: Poppins-Regular;
+  font-size: 20px;
+  color: #555555;
+  line-height: 1.2;
+
+  display: block;
+  width: 100%;
+  height: 45px;
+  background: transparent;
+  padding: 0 5px;
+}
+
+
+.inputSexe  {
+  font-family: Poppins-Regular;
+  font-size: 20px;
+  color: #555555;
+  line-height: 1.2;
+
+  display: block;
+  width: 100%;
+  height: 45px;
+  background: transparent;
+  padding: 0 5px;
+}
+
+.inputDate_naissance  {
+  font-family: Poppins-Regular;
+  font-size: 20px;
+  color: #555555;
+  line-height: 1.2;
+
+  display: block;
+  width: 100%;
+  height: 45px;
+  background: transparent;
+  padding: 0 5px;
+}
+
+.inputEmail  {
+  font-family: Poppins-Regular;
+  font-size: 20px;
+  color: #555555;
+  line-height: 1.2;
+
+  display: block;
+  width: 100%;
+  height: 45px;
+  background: transparent;
+  padding: 0 5px;
+}
+
+
+.lastnameLabel {
+  font-family: Helvetica;
+  font-size: 20px;
+  color: #333333;
+  line-height: 1.2;
+  display: block;
+}
+
+
+.loginLabel {
+  font-family: Helvetica;
+  font-size: 20px;
+  color: #333333;
+  line-height: 1.2;
+  display: block;
+}
+
+.pass
+{
+	font-family: Helvetica;
+  font-size: 20px;
+  color: #333333;
+  line-height: 1.2;
+  display: block;
+}
+
+
+.Sexe {
+  font-family: Helvetica;
+  font-size: 20px;
+  color: #333333;
+  line-height: 1.2;
+  display: block;
+}
+
+.Date_naissance {
+  font-family: Helvetica;
+  font-size: 20px;
+  color: #333333;
+  line-height: 1.2;
+  display: block;
+}
+
+.Email {
+  font-family: Helvetica;
+  font-size: 20px;
+  color: #333333;
+  line-height: 1.2;
+  display: block;
+}
+.bouton-conteneur {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 13px;
+  padding-bottom: 20px;
+}
+.wraper-bouton
+{
+	width: 100%;
+  display: block;
+  position: relative;
+  z-index: 1;
+  border-radius: 25px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+.bouton
+{
+  font-family: Helvetica;
+  font-size: 15px;
+  color: #fff;
+  line-height: 1.2;
+  border-radius: 10px;
+  text-transform: uppercase;
+  background-color: #10100a; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0 20px;
+  width: 100%;
+  height: 50px;
+}
