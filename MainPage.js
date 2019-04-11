@@ -3,46 +3,81 @@ import axios from 'axios';
 import Login from './Login';
 import Logout from './Logout';
 import Mur from './Mur'
+import Inscription from './Inscription';
 class MainPage extends Component {
-  
 
-  constructor()
-  {
-  	super()
-  	this.state = {current_page : 'connexion', connected: false, key:"", connexion:""}
-  	this.setState(this.state)
-  	this.connect = this.connect.bind(this)
-  	this.disconnect = this.disconnect.bind(this)
-    this.tweets =[
-                  {
-                    pseudo:"hakim", 
-                    image:"https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
-                    message:"hello, ations de mise en page de texte, comme Aldus PageMaker"
-                  }
 
-                    
+  constructor() {
+    super();
+    this.state = { current_page: 'connexion', connected: false, key: "", login: "" };
+    this.setState(this.state);
+    this.connect = this.connect.bind(this);
+    this.disconnect = this.disconnect.bind(this);
+    this.goToSubscribe = this.goToSubscribe.bind(this);
+    this.subscribe = this.subscribe.bind(this);
+    
+    this.tweets = [
+      {
+        pseudo: "hakim",
+        image: "https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
+        message: "hello, ations de mise en page de texte, comme Aldus PageMaker"
+      }
+
+
     ]
   }
 
-  connect({login, password})
+  goToSubscribe()
   {
+    this.setState({current_page : "inscription"})
+  }
+
+  connect({ login, password }) {
+    
+  	axios.get("http://localhost:8080/RCTwister/User/Login?login=" + login + "&password=" + password).then(response => {
+    if(Object.keys(response.data).length === 2 )
+    {
+      console.log(response.data["connexion"] + "  " + response.data["key"])
+      this.setState({current_page: 'posts', login :  login,connected : true, key: response.data["key"] })
+    }
+    else{
+      console.log("erreur")
+    }
+   
   	
-  	/*axios.get('https://www.google.com/search?q=twister&ie=utf-8&oe=utf-8&client=firefox-b-e').then(response => {
-  	this.setSate({current_page: response.data["connexion"] === 'ok' ? 'posts' : 'login'})
-  	
-  	});*/
+  	});
 
   }
-  disconnect()
+  subscribe({Lastname, Name, Login, pass, Sexe, Date_naissance, Email})
   {
+    console.log(Lastname +" " + Name +" " +Login +" " + pass +" " + Sexe+" " + Date_naissance +" " + Email)
+    axios.get("http://localhost:8080/RCTwister/User/Creation?nom=" + Lastname+ "&prenom="+Name+"&login="+Login+"&password="+pass+"&sexe="+Sexe+"&DOB="+Date_naissance+"&email="+Email).then(response =>
+      { 
+        console.log("execution ")
+        console.log(response.data)
+        console.log("execution ")
+        
 
-  	alert("deconnect login : " + this.statelogin + " | key : " + this.state.key)
+        if( "creation " in response.data &&  Object.keys(response.data).length === 1)
+        {
+          console.log(response.data["creation "]);
+          this.setState({current_page: 'connexion', login :  Login,connected : false, key: "" });
+        }
+        else{
+          alert("erreur " + response.data );
+        }
+      });
+    
+  }
+  disconnect() {
+
+    alert("deconnect login : " + this.statelogin + " | key : " + this.state.key)
     /*const logs = axios.get('http://localhost:8080/Twister/User/Logout?login=' + login + '&key=' + key)
     
     if(logs.connexion == "ok")
     {
       */
-      this.setState({current_page : 'connexion', connected: false})
+    this.setState({ current_page: 'connexion', connected: false })
     /*}
     else
     {
@@ -51,24 +86,24 @@ class MainPage extends Component {
     }*/
 
   }
-  addMessage(message)
-  {
-    
-  }
-  render()
-  {
-  switch(this.state.current_page) {
-    case 'connexion':
-      return <Login connect= {this.connect} />;
-    case 'posts':
-      return <div>
-                  <Mur disconnect={this.disconnect} login={this.state.login} clef={this.state.key} tweets={this.tweets}/>
-              </div>
+  addMessage(message) {
 
-    default:
-      return null;
   }
-}
+  render() {
+    switch (this.state.current_page) {
+      case 'connexion':
+        return <Login connect={this.connect} goToSubscribe={this.goToSubscribe}/>;
+      case 'inscription':
+        return <Inscription subscribe={this.subscribe} />
+      case 'posts':
+        return <div>
+          <Mur disconnect={this.disconnect} login={this.state.login} clef={this.state.key} tweets={this.tweets} />
+        </div>
+
+      default:
+        return null;
+    }
+  }
 }
 
 export default MainPage;

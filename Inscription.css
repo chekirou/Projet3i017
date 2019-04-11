@@ -1,44 +1,4 @@
 
-*
-{
-	margin: 5px;
-	padding: 5px;
-    box-sizing: border-box;
-}
-
-body, html {
-	height: 100%;
-	font-family: Helvetica, sans-serif;
-}
-a
-{
-	font-family: Helvetica;
-	font-size: 14px;
-	line-height: 1.7;
-	color: #666666;
-	margin: 0px;
-}
-h1 {
-	margin: 0px;
-}
-
-a
-{
-	font-family: Helvetica;
-	font-size: 14px;
-	line-height: 1.7;
-	color: #666666;
-	margin: 0px;
-}
-h1 {
-	margin: 0px;
-}
-input {
-	outline: none;
-    border: none;
-	
-}
-
 
 
 
@@ -158,11 +118,16 @@ img
 
 .divSexe {
   width: 100%;
+  display: flex;
+  flex-direction: column;
   position: relative;
-  border-bottom: 2px solid #adadad;
+  /*border-bottom: 2px solid #adadad;*/
   margin-bottom: 37px;
 }
-
+.radio
+{
+  margin-left: 10%;
+}
 
 .divDate_naissance {
   width: 100%;
@@ -305,6 +270,7 @@ img
   color: #333333;
   line-height: 1.2;
   display: block;
+  margin-bottom: 25px;
 }
 
 .Date_naissance {

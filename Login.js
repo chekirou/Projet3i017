@@ -5,7 +5,8 @@ class Login extends Component {
   {
   	super(props);
 	this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleSubmit = this.handleSubmit.bind(this);
+		this.handleSubscribe = this.handleSubscribe.bind(this);
   }
   
   handleInputChange(event) {
@@ -20,7 +21,11 @@ class Login extends Component {
 
   handleSubmit() {
     this.props.connect(this.state)
-  }
+	}
+	handleSubscribe()
+	{
+		this.props.goToSubscribe();
+	}
   
 render()
 {
@@ -28,7 +33,7 @@ render()
 			<div className="conteneur">
 				<div className="conteneurLogin">
 					<div className="wraperLogin">
-						<form className="formulaire" onsubmit={this.handleSubmit} >
+						<div className="formulaire" >
 							<div className="titre">
 								<img src="https://www.brandcrowd.com/gallery/brands/pictures/picture12632215544704.jpg"/>
 							</div>
@@ -43,7 +48,7 @@ render()
 							</div>
 							<div className="bouton-conteneur">
 								<div className="wraperBouton">
-									<input className="bouton" type="submit" value='connexion' />
+									<input className="bouton" type="submit" value='connexion'  onClick={this.handleSubmit}/>
 								</div>
 								
 							</div>
@@ -52,14 +57,14 @@ render()
 									Pas encore inscrit? 
 								</span>
 
-								<a class="texte2" href="#">
+								<a class="texte2" onClick={this.handleSubscribe}>
 									   inscription
 								</a>
 							</div>
 							<div>
 								<a className="texte2" href="https://mail.google.com"> mot de passe oublié </a>
 							</div>
-						</form>	
+						</div>	
 					</div>
 				</div>
 			</div>
