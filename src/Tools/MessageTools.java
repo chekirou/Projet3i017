@@ -44,7 +44,11 @@ public class MessageTools {
 			while (cursor.hasNext()) {
 
 				Document ok = cursor.next();
-				obj.append(ok.getString("author_name"), ok.getString("message"));
+				JSONObject o = new JSONObject();
+				o.append("message", ok.getString("message"));
+				o.append("name", ok.getString("author_name"));
+				o.append("date", ok.getDate("date"));
+				obj.append(ok.getString("author_name"), o);
 				System.out.println(ok);
 			}
 		} catch (JSONException e) {
