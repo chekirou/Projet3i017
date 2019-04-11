@@ -9,7 +9,7 @@ class NewsFeed extends Component {
 	{
 		return (
 			
-				this.props.tweets.map(({pseudo, image, message}) =>
+				this.props.tweets.map(({pseudo, message}) =>
 					Message({pseudo, image, message})
 					
 				)

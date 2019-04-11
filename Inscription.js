@@ -16,7 +16,6 @@ class Inscription extends Component {
     this.setState({
       [name]: value
     });
-    console.log(this.state);
   }
   subscribe()
   {
@@ -68,11 +67,7 @@ render()
 							
 							<div className="divDate_naissance">
 								<label className="Date_naissance"> Date_naissance </label>
-								
-							
-							<input type="date" name="inputDate_naissance" onChange={this.handleInputChange}/>
-							
-							
+								<input className="inputDate_naissance" type="text" name="Date_naissance" onChange={this.handleInputChange}/>
 							</div>
 							
 							<div className="divEmail">

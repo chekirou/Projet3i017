@@ -8,9 +8,10 @@ import Profil_square from './Profil_square'
 import NewMessage from './NewMessage'
 import './Mur.css';
 class Mur extends Component {
-  constructor()
+  constructor(props)
   {
-  	super()
+	  super(props);
+	  
   }
   render()
   {

@@ -132,9 +132,8 @@ img
 .divDate_naissance {
   width: 100%;
   position: relative;
+  border-bottom: 2px solid #adadad;
   margin-bottom: 37px;
-  
-  
 }
 
 .divEmail {
@@ -217,7 +216,6 @@ img
   color: #555555;
   line-height: 1.2;
 
-
   display: block;
   width: 100%;
   height: 45px;
@@ -281,7 +279,6 @@ img
   color: #333333;
   line-height: 1.2;
   display: block;
-  margin-bottom:25px;
 }
 
 .Email {
