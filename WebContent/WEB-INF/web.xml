@@ -82,6 +82,7 @@
 		<servlet-name>InfoUser</servlet-name>
 		<url-pattern>/User/Info</url-pattern>
 	</servlet-mapping>
+	
 	<filter>
 		<filter-name>CorsFilter</filter-name>
 		<filter-class>DataBase.CORSFilter</filter-class>
