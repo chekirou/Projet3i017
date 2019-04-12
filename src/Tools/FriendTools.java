@@ -107,7 +107,6 @@ public class FriendTools {
 	{
 		// renvoie un objet JSON avec tout les friends dedans 
 		JSONObject obj = new JSONObject();
-		List<String> liste = new ArrayList<String>();
 		try {
 			Connection c = DataBase.getMySQLConnection();
 			Statement s = c.createStatement();
@@ -133,7 +132,7 @@ public class FriendTools {
 	{
 		// renvoie un objet JSON avec tout les friends dedans 
 		JSONObject obj = new JSONObject();
-		List<String> liste = new ArrayList<String>();
+		
 		try {
 			Connection c = DataBase.getMySQLConnection();
 			Statement s = c.createStatement();
