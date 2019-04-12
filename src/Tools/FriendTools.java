@@ -101,4 +101,56 @@ public class FriendTools {
 		
 		return check;
 	}
+	
+	
+	public static JSONObject nbAbonnés(String login)
+	{
+		// renvoie un objet JSON avec tout les friends dedans 
+		JSONObject obj = new JSONObject();
+		List<String> liste = new ArrayList<String>();
+		try {
+			Connection c = DataBase.getMySQLConnection();
+			Statement s = c.createStatement();
+			String q = "SELECT login2 FROM friendships WHERE login1='" + login + "';";
+			ResultSet rs = s.executeQuery(q);
+			int cpt=0;
+			while (rs.next()) {
+				cpt++;
+			}
+			obj.put("nbAbonnés", cpt);
+			rs.close();
+			s.close();
+			c.close();
+
+		} catch (SQLException| JSONException e) {
+
+		}	
+		return obj;
+	}
+	
+	
+	public static JSONObject nbAbonements(String login)
+	{
+		// renvoie un objet JSON avec tout les friends dedans 
+		JSONObject obj = new JSONObject();
+		List<String> liste = new ArrayList<String>();
+		try {
+			Connection c = DataBase.getMySQLConnection();
+			Statement s = c.createStatement();
+			String q = "SELECT login1 FROM friendships WHERE login2='" + login + "';";
+			ResultSet rs = s.executeQuery(q);
+			int cpt;
+			while (rs.next()) {
+				cpt++;
+			}
+			obj.put("nbAbonnements", cpt);
+			rs.close();
+			s.close();
+			c.close();
+
+		} catch (SQLException| JSONException e) {
+
+		}	
+		return obj;
+	}
 }
