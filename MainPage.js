@@ -9,19 +9,33 @@ class MainPage extends Component {
 
   constructor() {
     super();
-    this.state = { current_page: 'connexion', connected: false, key: "", login: "" };
+    this.state = { current_page: 'posts', connected: false, key: "", login: "" };
     this.setState(this.state);
     this.connect = this.connect.bind(this);
     this.disconnect = this.disconnect.bind(this);
     this.goToSubscribe = this.goToSubscribe.bind(this);
     this.subscribe = this.subscribe.bind(this);
     this.addMessage = this.addMessage.bind(this);
+	this.updatetweets = this.updatetweets.bind(this);
     
-    this.tweets = []
+    this.tweets =[
+                  {
+                    pseudo:"hakim", 
+                    image:"https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
+                    message:"hello, ations de mise en page de texte, comme Aldus PageMaker"
+                  },
+				  {
+                    pseudo:"hakim", 
+                    image:"https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
+                    message:"heùlknùlknùlknlknùlknlknaaaaaaaaaaaaaaaaaaa    klnkje ùlknùzlknvjeje,llo, ations de mise en page de texte, comme Aldus PageMaker"
+                  }
+
+                    
+    ]
   }
   
   
-  getMessage(login)
+  async getMessage(login)
   {
     axios.get("http://localhost:8080/RCTwister/Message/ListMessages?Login=" + login).then(response =>
       { 
@@ -120,11 +134,10 @@ class MainPage extends Component {
         }
       });
   }
-  getPersonnalPage(login)
-  {
-    this.getMyMessages(this.state.login);
-  }
-  getMyMessages()
+	async updatetweets(login)
+	{
+		await this.getMessage(login)
+	}
   render() {
     switch (this.state.current_page) {
       case 'connexion':
@@ -132,8 +145,7 @@ class MainPage extends Component {
       case 'inscription':
         return <Inscription subscribe={this.subscribe} />
       case 'posts':
-        getPersonnalPage(this.state.login);
-        this.getMyMessages(this.state.login);
+        /*this.updatetweets(this.state.login);*/
         console.log("les tweets");
         console.log(this.tweets);
         return <div>

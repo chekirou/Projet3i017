@@ -67,7 +67,11 @@ render()
 							
 							<div className="divDate_naissance">
 								<label className="Date_naissance"> Date_naissance </label>
-								<input className="inputDate_naissance" type="text" name="Date_naissance" onChange={this.handleInputChange}/>
+								
+							
+							<input type="date" name="inputDate_naissance" onChange={this.handleInputChange}/>
+							
+							
 							</div>
 							
 							<div className="divEmail">
