@@ -3,9 +3,16 @@ package Tools;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.bson.Document;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import com.mongodb.client.MongoCollection;
+import com.mongodb.client.MongoCursor;
+import com.mongodb.client.MongoDatabase;
 
 import java.sql.Connection;
 
@@ -118,7 +125,7 @@ public class UserTools {
 			boolean res;
 			// Class.forName("com.mysql.jdbc.Driver").newInstance();
 			Connection c = DataBase.getMySQLConnection();
-			String q = "Insert into Session values('" + login + "', '" + clef + "', now() );";
+			String q = "Insert into Session values('" + login + "', '" + clef + "', now() ' );";
 			Statement s = c.createStatement();
 			int rs = s.executeUpdate(q);
 			s.close();
@@ -150,7 +157,34 @@ public class UserTools {
 		}
 	}
 
+	public static JSONObject InfoUsers(String login) {
+		JSONObject obj = new JSONObject();
+		List<String> liste = new ArrayList<String>();
+			try {
+				Connection c = DataBase.getMySQLConnection();
+				Statement s = c.createStatement();
+				String q = "SELECT nom, prenom, genre, DOB, email FROM Users WHERE login='" + login + "';";
+				ResultSet rs = s.executeQuery(q);
 
+				while (rs.next()) {
+					liste.add(rs.getString("nom"));
+					liste.add(rs.getString("prenom"));
+					liste.add(rs.getString("genre"));
+					liste.add(rs.getString("DOB"));
+					liste.add(rs.getString("email"));
+				}
+				obj.put("infos", liste);
+				rs.close();
+				c.close();
+				s.close();
+
+			} catch (SQLException| JSONException e) {
+
+			}	
+			return obj;
+		}
+			
+	
 
 	
 

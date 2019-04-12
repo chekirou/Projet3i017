@@ -38,6 +38,10 @@
 		<servlet-name>ListMessage</servlet-name>
 		<servlet-class>Servlets.ListMessage</servlet-class>
 	</servlet>
+	<servlet>
+		<servlet-name>infoUser</servlet-name>
+		<servlet-class>Servlets.InfoUser</servlet-class>
+	</servlet>
 	<servlet-mapping>
 		<servlet-name>UserCreation</servlet-name>
 		<url-pattern>/User/Creation</url-pattern>
@@ -74,10 +78,15 @@
 		<servlet-name>ListMessage</servlet-name>
 		<url-pattern>/Message/ListMessages</url-pattern>
 	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>InfoUser</servlet-name>
+		<url-pattern>/User/Info</url-pattern>
+	</servlet-mapping>
 	<filter>
 		<filter-name>CorsFilter</filter-name>
 		<filter-class>DataBase.CORSFilter</filter-class>
 	</filter>
+	
 	<filter-mapping>
 		<filter-name>CorsFilter</filter-name>
 		<url-pattern>/*</url-pattern>
