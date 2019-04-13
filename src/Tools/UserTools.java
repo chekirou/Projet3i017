@@ -125,7 +125,7 @@ public class UserTools {
 			boolean res;
 			// Class.forName("com.mysql.jdbc.Driver").newInstance();
 			Connection c = DataBase.getMySQLConnection();
-			String q = "Insert into Session values('" + login + "', '" + clef + "', now() ' );";
+			String q = "Insert into Session values('" + login + "', '" + clef + "', now()  );";
 			Statement s = c.createStatement();
 			int rs = s.executeUpdate(q);
 			s.close();
@@ -183,6 +183,27 @@ public class UserTools {
 			}	
 			return obj;
 		}
+
+
+
+	public static JSONObject StatsUser(String login) {
+		// TODO Auto-generated method stub
+		JSONObject o = new JSONObject();
+		List<Integer> liste = new ArrayList<>(); 
+		int id = ServiceTools.getID(login);
+		try {
+			o.append("nbMessages" ,MessageTools.countMessages(id));
+			o.append("follows", FriendTools.countFriends(login));
+			o.append("subs", FriendTools.countsubs(login));
+		} catch (JSONException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		
+		
+		
+		return o;
+	}
 			
 	
 

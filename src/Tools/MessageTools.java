@@ -3,13 +3,16 @@ package Tools;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.bson.Document;
 import org.bson.types.ObjectId;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import com.mongodb.client.FindIterable;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoCursor;
 import com.mongodb.client.MongoDatabase;
@@ -31,7 +34,36 @@ public class MessageTools {
 
 	}
 
-	public static JSONObject listMessages(int id) {
+	public static List<Document> listMessages(int id) {
+		List<Document> liste = new ArrayList<>();
+		
+			MongoDatabase db = MongoTools.getConnexionMongo();
+			MongoCollection<Document> mc = db.getCollection("Messages");
+			Document d = new Document();
+
+			d.append("author_id", id);
+			FindIterable <Document> f = mc.find(new Document("author_id", id)).sort(new Document("date", -1));
+			MongoCursor<Document> cursor = f.iterator();
+			while (cursor.hasNext()) {
+
+				liste.add(cursor.next());
+			}
+		
+		return liste;
+	}
+
+	public static void deleteMessage(String id_message) {
+		MongoDatabase db = MongoTools.getConnexionMongo();
+		MongoCollection<Document> mc = db.getCollection("Messages");
+		Document d = new Document();
+		d.append("_id", new ObjectId(id_message));
+		mc.deleteOne(d);
+
+	}
+
+	public static int countMessages(int id) {
+		// TODO Auto-generated method stub
+		int i=0;
 		JSONObject obj = new JSONObject();
 		try {
 			MongoDatabase db = MongoTools.getConnexionMongo();
@@ -49,21 +81,37 @@ public class MessageTools {
 				o.append("name", ok.getString("author_name"));
 				o.append("date", ok.getDate("date"));
 				obj.append(ok.getString("author_name"), o);
-				System.out.println(ok);
+				i++;
+				System.out.println(i);
 			}
 		} catch (JSONException e) {
 			e.printStackTrace();
 		}
-		return obj;
+		return i;
 	}
 
-	public static void deleteMessage(String id_message) {
-		MongoDatabase db = MongoTools.getConnexionMongo();
-		MongoCollection<Document> mc = db.getCollection("Messages");
-		Document d = new Document();
-		d.append("_id", new ObjectId(id_message));
-		mc.deleteOne(d);
+	public static List<Document> listMixMessages(List<String> listeFriends) {
+		// TODO Auto-generated method stub
+		List<Document> liste = new ArrayList<>();
+		JSONObject obj = new JSONObject();
+		
+			MongoDatabase db = MongoTools.getConnexionMongo();
+			MongoCollection<Document> mc = db.getCollection("Messages");
+			
+			Document d = new Document();
+			for (String i : listeFriends)
+			{
+				FindIterable <Document> f = mc.find(new Document("author_name", i)).sort(new Document("date", -1));
+				MongoCursor<Document> cursor = f.iterator();
+				while (cursor.hasNext()) {
 
+					liste.add(cursor.next());
+				}
+			}
+			
+			
+		
+		return liste;
 	}
 
 	/*

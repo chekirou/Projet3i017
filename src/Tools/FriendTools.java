@@ -101,55 +101,82 @@ public class FriendTools {
 		
 		return check;
 	}
-	
-	
-	public static JSONObject nbAbonnés(String login)
-	{
-		// renvoie un objet JSON avec tout les friends dedans 
-		JSONObject obj = new JSONObject();
-		try {
-			Connection c = DataBase.getMySQLConnection();
+
+	public static int countFriends(String login) {
+		// TODO Auto-generated method stub
+		int i = 0;
+		
+		List<String> liste = new ArrayList<String>();
+		
+			Connection c;
+			try {
+				c = DataBase.getMySQLConnection();
+			
 			Statement s = c.createStatement();
 			String q = "SELECT login2 FROM friendships WHERE login1='" + login + "';";
 			ResultSet rs = s.executeQuery(q);
-			int cpt=0;
 			while (rs.next()) {
-				cpt++;
+				i++;
 			}
-			obj.put("nbAbonnés", cpt);
 			rs.close();
 			s.close();
 			c.close();
-
-		} catch (SQLException| JSONException e) {
-
-		}	
-		return obj;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+				
+		return i;
 	}
-	
-	
-	public static JSONObject nbAbonements(String login)
-	{
-		// renvoie un objet JSON avec tout les friends dedans 
-		JSONObject obj = new JSONObject();
+	public static int countsubs(String login) {
+		// TODO Auto-generated method stub
+		int i = 0;
 		
-		try {
-			Connection c = DataBase.getMySQLConnection();
+		List<String> liste = new ArrayList<String>();
+		
+			Connection c;
+			try {
+				c = DataBase.getMySQLConnection();
+			
 			Statement s = c.createStatement();
-			String q = "SELECT login1 FROM friendships WHERE login2='" + login + "';";
+			String q = "SELECT login2 FROM friendships WHERE login2='" + login + "';";
 			ResultSet rs = s.executeQuery(q);
-			int cpt;
 			while (rs.next()) {
-				cpt++;
+				i++;
 			}
-			obj.put("nbAbonnements", cpt);
 			rs.close();
 			s.close();
 			c.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+				
+		return i;
+	}
 
-		} catch (SQLException| JSONException e) {
+	public static List<String> listeFollows(String login) {
+		// TODO Auto-generated method stub
+		// renvoie un objet JSON avec tout les friends dedans 
+				List<String> liste = new ArrayList<String>();
+				try {
+					Connection c = DataBase.getMySQLConnection();
+					Statement s = c.createStatement();
+					String q = "SELECT login2 FROM friendships WHERE login1='" + login + "';";
+					ResultSet rs = s.executeQuery(q);
+					while (rs.next()) {
+						liste.add(rs.getString("login2"));
+					}
+					
+					rs.close();
+					s.close();
+					c.close();
 
-		}	
-		return obj;
+				} catch (SQLException e) {
+
+				}	
+				return liste;
 	}
 }
