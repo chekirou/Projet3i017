@@ -7,6 +7,10 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import Services.User;
 import Tools.UserTools;
 	
@@ -22,7 +26,14 @@ public class InfoUser extends HttpServlet{
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 
-		out.print(UserTools.InfoUsers(login));
+		JSONObject o =  UserTools.InfoUsers(login);
+		try {
+			o.append("stats", UserTools.StatsUser(login));
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		out.print(o);
 		out.flush();
 			
 	}
