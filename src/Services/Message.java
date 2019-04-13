@@ -1,8 +1,10 @@
 package Services;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.List;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -72,7 +74,14 @@ public class Message {
 			// hisLogin dans les amis de myLogin
 			
 				int id = ServiceTools.getID(login);
-				obj = MessageTools.listMessages(id);
+				obj =  new JSONObject();
+				try {
+					obj.append("les messages", MessageTools.listMessages(id));
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+						
 				
 				//obj.put("messages ok", "ok ");
 				
@@ -120,5 +129,39 @@ public class Message {
 		
 		return obj;
 		
+	}
+	public static JSONObject listMixMessages(String login) {
+		// TODO Auto-generated method stub
+		JSONObject obj = null;
+		if(login == null)
+		{
+			obj = Tools.ServiceTools.refused(3);
+			
+		}
+		else if(!Tools.UserTools.existsUser(login))
+		{
+			obj = Tools.ServiceTools.refused(4);
+		}
+		else
+		{
+			// renvoie la liste des messages
+			
+			// hisLogin dans les amis de myLogin
+			
+				List<String> listeFriends = Tools.FriendTools.listeFollows(login);
+				listeFriends.add(login);
+				obj =new JSONObject();
+				try {
+					obj.append("les messages",MessageTools.listMixMessages(listeFriends));
+				} catch (JSONException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+				//obj.put("messages ok", "ok ");
+				
+			
+		}
+		return obj;
 	}
 }
