@@ -14,8 +14,8 @@
 
 .photo
 {
-	width: 7%;
-	height: 7%;
+	width: 30px;
+	height: 30px;
 	margin-top: 5px;
 	margin-left: 5px;
 	border-radius: 50%;
@@ -38,6 +38,10 @@
 }
 .supprimer
 {
-	width: 30px;
-	height:30px;
+	width: 20px;
+	height:20px;
+}
+.boutons
+{
+	margin-top: 5px;
 }

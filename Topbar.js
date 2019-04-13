@@ -4,10 +4,15 @@ class Topbar extends Component {
   constructor(props)
   {
   	super(props);
-  	this.handleDeco = this.handleDeco.bind(this);
+	  this.handleDeco = this.handleDeco.bind(this);
+	  this.handleHome = this.handleHome.bind(this);
   }
   handleDeco(event) {
     this.props.signOut()
+  }
+  handleHome(event)
+  {
+	  this.props.goHome();
   }
 	render()
 	{
@@ -17,7 +22,7 @@ class Topbar extends Component {
 				<div className="topbarConteneur3">
 					<div className="topbarConteneur4">
 						<span className="home_notif">
-							<img  id="home" src="https://cdn4.iconfinder.com/data/icons/pictype-free-vector-icons/16/home-512.png" alt="profil"/> 
+							<img  id="home" src="https://cdn4.iconfinder.com/data/icons/pictype-free-vector-icons/16/home-512.png" alt="profil" onClick={this.handleHome}/> 
 							<img id="notifs" src="https://cdn1.iconfinder.com/data/icons/ui-22/24/391-512.png" alt="notification" />
 						</span>
 						<img className="icone" src="https://www.brandcrowd.com/gallery/brands/pictures/picture12632215544704.jpg" alt="logo"/>

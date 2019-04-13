@@ -9,54 +9,19 @@ class MainPage extends Component {
 
   constructor() {
     super();
-    this.state = { current_page: 'posts', connected: false, key: "", login: "" };
+    this.state = { current_page: 'connexion', connected: false, key: "", login: "" };
     this.setState(this.state);
     this.connect = this.connect.bind(this);
     this.disconnect = this.disconnect.bind(this);
     this.goToSubscribe = this.goToSubscribe.bind(this);
     this.subscribe = this.subscribe.bind(this);
-    this.addMessage = this.addMessage.bind(this);
-	this.updatetweets = this.updatetweets.bind(this);
     
-    this.tweets =[
-                  {
-                    pseudo:"hakim", 
-                    image:"https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
-                    message:"hello, ations de mise en page de texte, comme Aldus PageMaker"
-                  },
-				  {
-                    pseudo:"hakim", 
-                    image:"https://images.unsplash.com/photo-1518806118471-f28b20a1d79d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80",
-                    message:"heùlknùlknùlknlknùlknlknaaaaaaaaaaaaaaaaaaa    klnkje ùlknùzlknvjeje,llo, ations de mise en page de texte, comme Aldus PageMaker"
-                  }
-
-                    
-    ]
+    
+    
   }
   
   
-  async getMessage(login)
-  {
-    axios.get("http://localhost:8080/RCTwister/Message/ListMessages?Login=" + login).then(response =>
-      { 
-        console.log("execution ")
-        console.log(response.data)
-        console.log("execution ")
-        
-        if( Object.keys(response.data).length === 1)
-        {
-          console.log(response.data);
-          for( var i in response.data[login])
-          {
-            console.log(response.data[login][i]);
-            this.tweets.push({pseudo : response.data[login][i]["name"][0], date : response.data[login][i]["date"][0], message: response.data[login][i]["message"][0] })
-          }
-        }
-        else{
-          alert("erreur " + response.data );
-        }
-      });
-  }
+ 
   goToSubscribe()
   {
     this.setState({current_page : "inscription"})
@@ -64,7 +29,9 @@ class MainPage extends Component {
 
   connect({ login, password }) {
     
+    console.log(login + " " + password)
   	axios.get("http://localhost:8080/RCTwister/User/Login?login=" + login + "&password=" + password).then(response => {
+    
     if(Object.keys(response.data).length === 2 )
     {
       console.log(response.data["connexion"] + "  " + response.data["key"])
@@ -117,27 +84,7 @@ class MainPage extends Component {
       });
 
   }
-  addMessage(message) {
-    axios.get("http://localhost:8080/RCTwister/Message/AddMessage?My_login=" + this.state.login + '&key=' + this.state.key + '&message=' + message).then(response =>
-      { 
-        console.log("execution ")
-        console.log(response.data)
-        console.log("execution ")
-        
-
-        if( "ajout du message" in response.data &&  Object.keys(response.data).length === 1)
-        {
-          console.log("ajout du message");
-        }
-        else{
-          alert("erreur " + response.data );
-        }
-      });
-  }
-	async updatetweets(login)
-	{
-		await this.getMessage(login)
-	}
+  
   render() {
     switch (this.state.current_page) {
       case 'connexion':
@@ -145,12 +92,9 @@ class MainPage extends Component {
       case 'inscription':
         return <Inscription subscribe={this.subscribe} />
       case 'posts':
-        /*this.updatetweets(this.state.login);*/
-        console.log("les tweets");
-        console.log(this.tweets);
         return <div>
           
-          <Mur disconnect={this.disconnect} login={this.state.login} clef={this.state.key} tweets={this.tweets} />
+          <Mur disconnect={this.disconnect} login={this.state.login} clef={this.state.key}  />
         </div>
 
       default:
