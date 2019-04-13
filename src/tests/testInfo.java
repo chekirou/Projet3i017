@@ -11,7 +11,9 @@ public class testInfo {
 	@Test
 	public void test()
 	{
-		System.out.println(UserTools.InfoUsers("macron"));
+		System.out.println(UserTools.InfoUsers("german"));
+		System.out.println(UserTools.StatsUser("german"));
+		
 	}
 
 }
