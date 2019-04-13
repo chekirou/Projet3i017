@@ -85,6 +85,7 @@ class MainPage extends Component {
 
   }
   
+  
   render() {
     switch (this.state.current_page) {
       case 'connexion':

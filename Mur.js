@@ -18,6 +18,7 @@ class Mur extends Component {
 	  this.goToUser = this.goToUser.bind(this);
 	  this.follow = this.follow.bind(this);
 	  this.goHome = this.goHome.bind(this);
+	  this.getListAmis = this.getListAmis.bind(this);
 	  this.tweets =[]
 	  this.infos={}
 	  
@@ -194,11 +195,9 @@ class Mur extends Component {
   			</div>
   			
   		</div>
-
-
-
   		)
   }
+
 
 }
 export default Mur;
