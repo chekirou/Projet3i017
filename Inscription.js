@@ -83,7 +83,7 @@ render()
 							
 							<div className="bouton-conteneur">
 								<div className="wraperBouton">
-									<input className="bouton" type="submit" value='connexion' onClick={this.subscribe}/>
+									<input className="bouton" type="submit" value='Inscription' onClick={this.subscribe}/>
 								</div>
 							</div>
 			
