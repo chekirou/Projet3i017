@@ -16,6 +16,8 @@ public class Friend {
 			obj = Tools.ServiceTools.refused(4);
 		} else if (!Tools.UserTools.keyLogin(myLogin, key)) {
 			obj = Tools.ServiceTools.refused(7);
+		} else if (Tools.FriendTools.dejaAmis(myLogin, hisLogin)){
+			obj = Tools.ServiceTools.refused(11);	
 		} else {
 			obj = new JSONObject();
 			try {
