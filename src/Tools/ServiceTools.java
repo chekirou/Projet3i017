@@ -52,6 +52,10 @@ public class ServiceTools {
 		case 10:
 			s= "ils ne sont pas amis";
 			break;
+				
+		case 11:
+			s="ils sont déjà amis";
+			break;
 		}
 
 		JSONObject obj = null;
