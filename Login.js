@@ -53,9 +53,9 @@ render()
 								
 							</div>
 							<div class="text-center p-t-115">
-								<span class="texte1">
+								<a class="texte1">
 									Pas encore inscrit? 
-								</span>
+								</a>
 
 								<a class="texte2" onClick={this.handleSubscribe}>
 									   inscription
