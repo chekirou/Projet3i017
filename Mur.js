@@ -6,6 +6,7 @@ import Topbar from './Topbar'
 import Profil_square from './Profil_square'
 import NewMessage from './NewMessage'
 import Follow from './follow'
+import Users from './Users'
 import './Mur.css';
 class Mur extends Component {
   constructor(props)
@@ -17,20 +18,46 @@ class Mur extends Component {
 	  this.getInfos = this.getInfos.bind(this);
 	  this.goToUser = this.goToUser.bind(this);
 	  this.follow = this.follow.bind(this);
-	  this.goHome = this.goHome.bind(this);
-	  this.getListAmis = this.getListAmis.bind(this);
+		this.goHome = this.goHome.bind(this);
+		this.searchPeople = this.searchPeople.bind(this);
+	  //this.getListAmis = this.getListAmis.bind(this);
 	  this.tweets =[]
 	  this.infos={}
-	  
-	  this.state = {infos : this.infos, personnal : true, mur: true};
+	  this.users = {};
+	  this.state = {infos : this.infos, personnal : true, mur: true, search: false};
 
 	  
-  }
+	}
+	searchPeople(mot)
+	{
+		console.log("le search")
+    axios.get("http://localhost:8080/RCTwister/Search?mot=" + mot).then(response =>
+      { 
+        
+        console.log(response.data)
+        
+        
+        if( Object.keys(response.data).length === 1)
+        {
+		  	console.log(response.data);
+		  	this.users= [];
+          for( var i in response.data["users"])
+          {
+            //console.log(response.data["user"][0]);
+            this.users.push({pseudo : response.data["users"][i]});
+					}
+		  this.setState({search : true, users: this.users})
+        }
+        else{
+          alert("erreur " + response.data );
+        }
+      });
+	}
   goToUser(login)
   {
     this.getInfos(login);
 	this.updatePersonalMessage(login);
-	this.setState({personnal : this.props.login === login, mur : false});
+	this.setState({personnal : this.props.login === login, mur : false, search: false});
   }
   addMessage(message) {
     axios.get("http://localhost:8080/RCTwister/Message/AddMessage?My_login=" + this.props.login + '&key=' + this.props.clef + '&message=' + message).then(response =>
@@ -169,7 +196,7 @@ class Mur extends Component {
   {
   	return (
   		<div className="tout">
-  			<Topbar signOut={this.props.disconnect} goHome={this.goHome}/>
+  			<Topbar signOut={this.props.disconnect} goHome={this.goHome} search={this.searchPeople}/>
   			<div className="part2">
   			<div className="side">
   				<Profil_square
@@ -183,7 +210,7 @@ class Mur extends Component {
   				 />
   			</div>
   			<div className="main">
-  			<NewsFeed tweets={this.tweets} goUser={this.goToUser}/>
+  			{this.state.search ? <Users users={this.users} goUser={this.goToUser} />: <NewsFeed tweets={this.tweets} goUser={this.goToUser}/>}
   			</div>
   			{this.state.personnal? 
 			  

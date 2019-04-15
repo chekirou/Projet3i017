@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import './Topbar.css';
+import logo from "./look.png";
 class Topbar extends Component {
   constructor(props)
   {
   	super(props);
 	  this.handleDeco = this.handleDeco.bind(this);
 	  this.handleHome = this.handleHome.bind(this);
+	  this.handleInputChange = this.handleInputChange.bind(this);
+	  this.handleSearch = this.handleSearch.bind(this)
   }
   handleDeco(event) {
     this.props.signOut()
@@ -14,6 +17,19 @@ class Topbar extends Component {
   {
 	  this.props.goHome();
   }
+  handleInputChange(event) {
+    const target = event.target;
+    const value = target.value;
+    const name = target.name;
+
+    this.setState({
+      [name]: value
+	});
+	}
+	handleSearch(event)
+	{
+		this.props.search(this.state.search);
+	}
 	render()
 	{
 	return(
@@ -26,10 +42,10 @@ class Topbar extends Component {
 							<img id="notifs" src="https://cdn1.iconfinder.com/data/icons/ui-22/24/391-512.png" alt="notification" />
 						</span>
 						<img className="icone" src="https://www.brandcrowd.com/gallery/brands/pictures/picture12632215544704.jpg" alt="logo"/>
-						<form>
-							<input className="inputSearch" type="text" name="search"/>
-							<input className="bouton" type="hidden"/>
-						</form>
+						<div className="divsearch">
+							<input className="inputSearch" type="text" name="search" onChange={this.handleInputChange}/>
+							<img className="boutonSearch" src={logo} onClick={this.handleSearch}/>
+						</div>
 						<img id="deco" src="https://png.pngtree.com/svg/20160517/96e893609e.png" alt="deconnexion" onClick={this.handleDeco}/>
 						
 					</div>

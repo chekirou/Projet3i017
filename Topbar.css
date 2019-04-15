@@ -72,6 +72,11 @@
 
 
 }
+.divsearch
+{
+	display: flex;
+	flex-direction: row;
+}
 
 .inputSearch {
   font-family: Helvetica;
@@ -87,5 +92,20 @@
   padding: 0 5px;
   margin-top: 5px;
   margin-left: 40%;
+
+}
+.boutonSearch
+{
+margin-top: 6px;
+font-family: Helvetica;
+
+border-radius: 20px;
+
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 0 0px;
+width: 55%;
+height: 30px;
 
 }
