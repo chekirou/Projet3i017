@@ -10,13 +10,13 @@ import javax.servlet.http.HttpServletResponse;
 import Services.Friend;
 import Services.Message;
 
-public class ListFriends extends HttpServlet{
+public class Search extends HttpServlet{
 	
-	public ListFriends() {}
+	public Search() {}
 	protected void doGet(HttpServletRequest request,HttpServletResponse response) 
 	{
 		// nom prenom login password
-		String login = request.getParameter("Login");
+		String login = request.getParameter("mot");
 		response.setContentType("application/json");
 		PrintWriter out = null;
 		try {
@@ -24,9 +24,8 @@ public class ListFriends extends HttpServlet{
 		} catch (IOException e) {
 			e.printStackTrace();
 		} 
-		out.print(Friend.listFriends(login));
+		out.print(Friend.search(login));
 		out.flush();
 		
 	}
 }
-

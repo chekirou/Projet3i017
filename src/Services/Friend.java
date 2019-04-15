@@ -95,4 +95,24 @@ public class Friend {
 
 	}
 
+	public static JSONObject search(String login) {
+		// TODO Auto-generated method stub
+		JSONObject obj = new JSONObject();
+		if (login == null) {
+			obj = Tools.ServiceTools.refused(3);
+
+		} else {
+
+			try {
+				obj.put("users", FriendTools.Search(login));
+
+			} catch (JSONException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+
+		return obj;
+	}
+
 }

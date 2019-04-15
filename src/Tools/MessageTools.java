@@ -99,15 +99,13 @@ public class MessageTools {
 			MongoCollection<Document> mc = db.getCollection("Messages");
 			
 			Document d = new Document();
-			for (String i : listeFriends)
-			{
-				FindIterable <Document> f = mc.find(new Document("author_name", i)).sort(new Document("date", -1));
-				MongoCursor<Document> cursor = f.iterator();
-				while (cursor.hasNext()) {
-
-					liste.add(cursor.next());
-				}
+			
+			FindIterable <Document> f = mc.find(new Document("author_name", new Document("$in", listeFriends))).sort(new Document("date", -1));
+			MongoCursor<Document> cursor = f.iterator();
+			while (cursor.hasNext()) {
+				liste.add(cursor.next());
 			}
+			
 			
 			
 		

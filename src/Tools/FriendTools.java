@@ -179,4 +179,26 @@ public class FriendTools {
 				}	
 				return liste;
 	}
+
+	public static List<String>  Search(String login) {
+		// TODO Auto-generated method stub
+		List<String> liste = new ArrayList<String>();
+		try {
+			Connection c = DataBase.getMySQLConnection();
+			Statement s = c.createStatement();
+			String q = "SELECT * FROM Users WHERE login Like '%" + login + "%';";
+			ResultSet rs = s.executeQuery(q);
+			
+			while (rs.next()) {
+				liste.add(rs.getString("login"));
+			}
+			rs.close();
+			c.close();
+			s.close();
+
+		} catch (SQLException e) {
+
+		}
+		return liste;
+	}
 }

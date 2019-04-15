@@ -31,6 +31,10 @@
 		<servlet-class>Servlets.AddMessage</servlet-class>
 	</servlet>
 	<servlet>
+		<servlet-name>Search</servlet-name>
+		<servlet-class>Servlets.Search</servlet-class>
+	</servlet>
+	<servlet>
 		<servlet-name>DeleteMessage</servlet-name>
 		<servlet-class>Servlets.DeleteMessage</servlet-class>
 	</servlet>
@@ -69,6 +73,10 @@
 	<servlet-mapping>
 		<servlet-name>ListFriends</servlet-name>
 		<url-pattern>/Friend/ListFriends</url-pattern>
+	</servlet-mapping>
+	<servlet-mapping>
+		<servlet-name>Search</servlet-name>
+		<url-pattern>/Search</url-pattern>
 	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>AddMessage</servlet-name>
