@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Message from './Message'
+import User from './User'
+import image from './profil_homme.png'
 class Users extends Component {
   	constructor(props)
   	{
@@ -10,7 +11,7 @@ class Users extends Component {
 		return (
 			
 				this.props.users.map(({pseudo}) =>
-					<Message pseudo={pseudo} goUser={this.props.goUser} />
+					<User image={image} pseudo={pseudo} goUser={this.props.goUser} />
 					
 				)
 

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Message from './Message'
 import image from './profil_homme.png'
+import './NewsFeed.css'
 class NewsFeed extends Component {
   	constructor(props)
   	{

@@ -19,7 +19,7 @@ class User extends Component {
 render(){
  
  return <div className="user">
-    		
+    		<img className="photo" src={this.props.image} />
     		<div className="pseudo" onClick={this.goUser}>{this.props.pseudo}  </div>
     		
 		
