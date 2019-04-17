@@ -17,7 +17,7 @@ class Message extends Component {
   }
   delete()
   {
-	  alert("jnflnf")
+	  
 	  this.props.delete(this.props.id);
   }
 
