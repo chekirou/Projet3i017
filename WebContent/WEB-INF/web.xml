@@ -53,6 +53,10 @@
     <servlet-name>Stat</servlet-name>
     <servlet-class>Servlets.Stat</servlet-class>
   </servlet>
+   <servlet>
+    <servlet-name>CheckAmis</servlet-name>
+    <servlet-class>Servlets.CheckFriends</servlet-class>
+  </servlet>
   <servlet-mapping>
     <servlet-name>UserCreation</servlet-name>
     <url-pattern>/User/Creation</url-pattern>
@@ -104,6 +108,10 @@
   <servlet-mapping>
     <servlet-name>Stat</servlet-name>
     <url-pattern>/Statistique/Stat</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>CheckAmis</servlet-name>
+    <url-pattern>/CheckAmis</url-pattern>
   </servlet-mapping>
   <filter>
     <filter-name>CorsFilter</filter-name>
