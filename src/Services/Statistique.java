@@ -18,8 +18,9 @@ public class Statistique {
 			co= DataBaseTools.nbConnectes();
 			inscrits=DataBaseTools.nbInscrits();
 			co=(1.0*co)/inscrits;
-			obj.put("pourcentage de personnes connectées", co);
-			obj.put("Nombre d'utilisateurs inscrits sur Twister", inscrits);
+			obj=new JSONObject();
+			obj.put("per", co);
+			obj.put("nbi", inscrits);
 
 		} catch (JSONException e) {
 				// TODO Auto-generated catch block

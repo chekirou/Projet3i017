@@ -10,64 +10,55 @@ import java.util.List;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-
-
 import DataBase.DataBase;
 
 public class DataBaseTools {
-	
+
 	public static int nbConnectes() {
-		int nb=0;
+		int nb = 0;
 		try {
 
 			Connection c = DataBase.getMySQLConnection();
 			Statement s = c.createStatement();
 			String q = "SELECT * FROM Session ;";
-			
+
 			ResultSet rs = s.executeQuery(q);
 			while (rs.next()) {
-				nb++;;
-			
+				nb++;
+				
+
+			}
 			rs.close();
 			s.close();
 			c.close();
-			}
 
 		} catch (SQLException e) {
 
-		}	
+		}
 		return nb;
 	}
-	
+
 	public static int nbInscrits() {
-		int nb=0;
+		int nb = 0;
 		try {
 			Connection c = DataBase.getMySQLConnection();
 			Statement s = c.createStatement();
 			String q = "SELECT * FROM Users ;";
-			
+
 			ResultSet rs = s.executeQuery(q);
 			while (rs.next()) {
-				nb++;;
-			
+				nb++;
+				
+			}
 			rs.close();
 			s.close();
 			c.close();
-			}
 
 		} catch (SQLException e) {
 
-		}	
+		}
 
 		return nb;
 	}
-	
-	
-	
-	}
-	
-	
-	
-	
 
-		
+}
