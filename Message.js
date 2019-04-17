@@ -9,6 +9,7 @@ class Message extends Component {
   {
 	  super(props);
 	  this.goUser = this.goUser.bind(this);
+	  this.id_message=this.props.id;
   }
   goUser()
   {
