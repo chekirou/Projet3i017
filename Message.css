@@ -2,13 +2,15 @@
 {
 	border: 1px solid #e6ecf0;
 	border-radius: 10px;
-	width : 100%;
+	min-width : 100px;
 	display: flex;
 	flex-direction: row;
 	box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
 	background: #fff;
 	margin-bottom: 5px;
 	padding: 19px 19px 19px 19px;
+	
+
 
 }
 

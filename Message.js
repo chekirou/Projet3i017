@@ -10,12 +10,16 @@ class Message extends Component {
 	  super(props);
 	  this.goUser = this.goUser.bind(this);
 	  this.id_message=this.props.id;
+	  this.delete = this.delete.bind(this);
   }
   goUser()
   {
 	  this.props.goUser(this.props.pseudo);
   }
-
+  delete()
+  {
+	  this.props.delete(this.id_message);
+  }
 
 
 render(){
@@ -29,7 +33,7 @@ render(){
     				<p> {this.props.message} </p>
     			</div>
 				<div className ="boutons">
-					<a><img className="supprimer" src={supprimer}/></a>
+					<a><img className="supprimer" src={supprimer} onClick={this.delete}/></a>
 				</div>
 				
     		</div>

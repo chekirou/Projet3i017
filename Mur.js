@@ -20,13 +20,31 @@ class Mur extends Component {
 	  this.follow = this.follow.bind(this);
 		this.goHome = this.goHome.bind(this);
 		this.searchPeople = this.searchPeople.bind(this);
+		this.delete = this.delete.bind(this);
 	  //this.getListAmis = this.getListAmis.bind(this);
 	  this.tweets =[]
 	  this.infos={}
 	  this.users = {};
 	  this.state = {infos : this.infos, personnal : true, mur: true, search: false};
-
-	  
+	}
+	delete(id_message)
+	{
+		console.log("le delete")
+    axios.get("http://localhost:8080/RCTwister/Message/DeleteMessage?My_login=" + this.props.login + "&key=" + this.props.clef+ "&MessageId=" + id_message).then(response =>
+      { 
+        
+        console.log(response.data)
+        
+        
+        if( Object.keys(response.data).length === 1)
+        {
+					this.updatePersonalMessage(this.props.login);
+					this.getInfos(this.props.login);
+        }
+        else{
+          alert("erreur " + response.data );
+        }
+      });
 	}
 	searchPeople(mot)
 	{
@@ -135,7 +153,6 @@ class Mur extends Component {
   {
 	axios.get("http://localhost:8080/RCTwister/User/Info?login=" + login).then(response =>
 	{ 
-	  
 	  console.log(response.data)
 	  
 	  
@@ -210,7 +227,7 @@ class Mur extends Component {
   				 />
   			</div>
   			<div className="main">
-  			{this.state.search ? <Users users={this.users} goUser={this.goToUser} />: <NewsFeed tweets={this.tweets} goUser={this.goToUser}/>}
+  			{this.state.search ? <Users users={this.users} goUser={this.goToUser} />: <NewsFeed tweets={this.tweets} goUser={this.goToUser} delete={this.delete}/>}
   			</div>
   			{this.state.personnal? 
 			  
