@@ -9,7 +9,6 @@ class Message extends Component {
   {
 	  super(props);
 	  this.goUser = this.goUser.bind(this);
-	  this.id_message=this.props.id;
 	  this.delete = this.delete.bind(this);
   }
   goUser()
@@ -18,7 +17,8 @@ class Message extends Component {
   }
   delete()
   {
-	  this.props.delete(this.id_message);
+	  alert("jnflnf")
+	  this.props.delete(this.props.id);
   }
 
 
