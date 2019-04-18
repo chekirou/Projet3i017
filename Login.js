@@ -62,7 +62,7 @@ render()
 								</a>
 							</div>
 							<div>
-								<a className="texte2" href="https://mail.google.com"> mot de passe oublié </a>
+								
 							</div>
 						</div>	
 					</div>

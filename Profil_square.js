@@ -3,7 +3,12 @@ import './profil_square.css';
 class Profil_square extends Component {
   constructor(props)
   {
-  	super(props);
+	  super(props);
+	  this.goUser = this.goUser.bind(this);
+  }
+  goUser()
+  {
+	  this.props.goUser(this.props.login);
   }
 render()
 {
@@ -16,16 +21,13 @@ render()
 	        	<img className="photo_profil" src={this.props.profilPic}/>
 	        	<div className="infos_utilisateur">
 		        	<div className="nomPrenom">
-		          		<a className="lien_nP" href="">{this.props.nom} {this.props.prenom}</a>
+		          		<a className="lien_nP" onClick={this.goUser}>{this.props.nom} {this.props.prenom}</a>
 		        	</div>
 		        	<span className="pseudo">
-		          		<a className="lien_pseudo" href="" >{this.props.login}</a>
+		          		<a className="lien_pseudo" onClick={this.goUser} >{this.props.login}</a>
 		        	</span>
 	      		</div>
 	        </div>
-
-	      	
-
 	         <div className="Stats">
 	    			<div className="infos">
 	          			<span className="messages_titre">Messages</span>

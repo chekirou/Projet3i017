@@ -301,6 +301,7 @@ class Mur extends Component {
   			<div className="part2">
   			<div className="side">
   				<Profil_square
+					goUser = {this.goToUser}
   				profilPic={ image}
   				nom={this.state.infos.nom}
   				prenom = {this.state.infos.prenom}
@@ -314,7 +315,10 @@ class Mur extends Component {
 					 date_naissance={this.state.infos.DOB}
 					 sexe={this.state.infos.sexe}
 					 />
-					 {this.state.personnal ? <ListeAmis liste={this.listeAmis} goUser={this.goToUser} /> : <div></div>} 
+					 {this.state.personnal ? <div className="listeFriends" >
+					 		<h3>Abonements </h3>
+						 <ListeAmis liste={this.listeAmis} goUser={this.goToUser} />
+					 </div> : <div></div>} 
   			</div>
   			<div className="main">
   			{this.state.search ? <Users users={this.users} goUser={this.goToUser} />: <NewsFeed tweets={this.tweets} goUser={this.goToUser} delete={this.delete} original={this.props.login} />}
