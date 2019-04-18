@@ -1,0 +1,53 @@
+.InfoPerso
+{
+	
+    border-radius: 10px;
+	background: #fff;
+	position: relative;
+	margin-bottom: 10px;
+	display: block;
+	font-family: Helvetica, Arial, sans-serif;
+    box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+
+
+
+}
+
+.infos_utilisateur_perso
+{
+    display : flex;
+    flex-direction: column;
+    padding-top: 16px;
+	padding-bottom: 16px;
+    padding-left: 20px;
+    padding-right: 16px;
+}
+
+
+.Info_titre
+{
+	font-weight: bold;
+    font-size: 18px;
+    line-height: 25px;
+    margin: -1px 0 -2px 0;
+    
+
+}
+.mail
+{
+	font-size: 14px;
+    
+}
+
+.naissance
+{
+    font-size: 14px;
+    
+}
+
+.Sexe
+{
+    font-size: 14px;
+   
+}
+
