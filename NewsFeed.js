@@ -9,11 +9,12 @@ class NewsFeed extends Component {
   	}
 	render()
 	{
+		console.log("original news " + this.props.original);
 		return (
 			
 				this.props.tweets.map(({pseudo,date, message,id_message}) =>
 					
-					<Message pseudo={pseudo} image={image} id={id_message} date={date} message = {message} goUser={this.props.goUser} delete={this.props.delete} />
+					<Message original={this.props.original} pseudo={pseudo} image={image} id={id_message} date={date} message = {message} goUser={this.props.goUser} delete={this.props.delete} />
 					
 				)
 

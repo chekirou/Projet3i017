@@ -23,6 +23,7 @@ class Message extends Component {
 
 
 render(){
+ console.log("original " + this.props.original);
  
  return <div className="tweet">
     		<img className="photo" src={this.props.image}/>
@@ -33,7 +34,8 @@ render(){
     				<p> {this.props.message} </p>
     			</div>
 				<div className ="boutons">
-					<a><img className="supprimer" src={supprimer} onClick={this.delete}/></a>
+				{this.props.pseudo === this.props.original ? <a><img className="supprimer" src={supprimer} onClick={this.delete}/></a> : <div></div>}
+					
 				</div>
 				
     		</div>

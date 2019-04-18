@@ -7,7 +7,8 @@ class NewMessage extends Component {
   {
 	  super(props);
 	  this.handleInputChange = this.handleInputChange.bind(this);
-	  this.send = this.send.bind(this)
+    this.send = this.send.bind(this);
+    this.setState({message : ""});
   }
   handleInputChange(event) {
     const target = event.target;
@@ -19,7 +20,15 @@ class NewMessage extends Component {
     });
   }
   send() {
-    this.props.sendMessage(this.state.message)
+    if(this.state.message === "")
+    {
+      alert("message vide");
+    }
+    else
+    {
+      this.props.sendMessage(this.state.message);
+      
+    }
 	}
   render()
   {

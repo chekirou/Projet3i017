@@ -9,6 +9,7 @@ import Follow from './follow'
 import Users from './Users'
 import image from './profil_homme.png'
 import './Mur.css';
+import Unfollow from './Unfollow'
 class Mur extends Component {
   constructor(props)
   {
@@ -22,11 +23,12 @@ class Mur extends Component {
 		this.goHome = this.goHome.bind(this);
 		this.searchPeople = this.searchPeople.bind(this);
 		this.delete = this.delete.bind(this);
+		this.unfollow = this.unfollow.bind(this);
 	  //this.getListAmis = this.getListAmis.bind(this);
 	  this.tweets =[]
 	  this.infos={}
 	  this.users = {};
-	  this.state = {infos : this.infos, personnal : true, mur: true, search: false};
+	  this.state = {infos : this.infos, personnal : true, mur: true, search: false, friends: false};
 	}
 	delete(id_message)
 	{
@@ -39,7 +41,14 @@ class Mur extends Component {
         
         if( Object.keys(response.data).length === 1)
         {
-					this.updatePersonalMessage(this.props.login);
+					if(this.state.mur)
+					{
+						this.updateMessage(this.props.login);
+					}else
+					{
+						this.updatePersonalMessage(this.props.login);
+					}
+					
 					this.getInfos(this.props.login);
         }
         else{
@@ -74,10 +83,29 @@ class Mur extends Component {
 	}
   goToUser(login)
   {
-    this.getInfos(login);
+  console.log("update personnal message");
 	this.updatePersonalMessage(login);
+	console.log("get info de " + login);
+	this.updateFriendshipStatus(login);
+	this.getInfos(login);
 	this.setState({personnal : this.props.login === login, mur : false, search: false});
-  }
+	}
+	updateFriendshipStatus(login)
+	{
+		axios.get("http://localhost:8080/RCTwister/CheckAmis?My_login="+this.props.login+"&His_login="+login).then(response =>
+      { 
+        
+        console.log(response.data)
+        if(response.data["amis"])
+        {
+					this.setState({friends : true});
+		  
+        }
+        else{
+          this.setState({friends: false});
+        }
+      });
+	}
   addMessage(message) {
     axios.get("http://localhost:8080/RCTwister/Message/AddMessage?My_login=" + this.props.login + '&key=' + this.props.clef + '&message=' + message).then(response =>
       { 
@@ -88,8 +116,15 @@ class Mur extends Component {
 
         if( "ajout du message" in response.data &&  Object.keys(response.data).length === 1)
         {
-		  console.log("ajout du message");
-		  this.updateMessage(this.props.login);
+			console.log("ajout du message");
+			if(this.state.mur)
+			{
+				this.updateMessage(this.props.login);
+			}else
+			{
+				this.updatePersonalMessage(this.props.login);
+			}
+		  
         }
         else{
           alert("erreur " + response.data );
@@ -113,8 +148,11 @@ class Mur extends Component {
           {
             console.log(response.data["les messages"][0]);
             this.tweets.push({pseudo : response.data["les messages"][0][i]["author_name"], date : response.data["les messages"][0][i]["date"], message: response.data["les messages"][0][i]["message"], id_message : response.data["les messages"][0][i]["_id"]  })
-		  }
-		  this.getInfos(this.props.login);
+			}
+			
+
+			this.getInfos(this.props.login);
+			
 		  this.setState({tweets : this.tweets})
         }
         else{
@@ -140,8 +178,8 @@ class Mur extends Component {
           {
             console.log(response.data["les messages"][0]);
             this.tweets.push({pseudo : response.data["les messages"][0][i]["author_name"], date : response.data["les messages"][0][i]["date"], message: response.data["les messages"][0][i]["message"], id_message : response.data["les messages"][0][i]["_id"]  })
-		  }
-		  this.getInfos(this.infos.login);
+					}
+		  this.getInfos(login);
 		  this.setState({tweets : this.tweets})
         }
         else{
@@ -209,7 +247,25 @@ class Mur extends Component {
 		alert("erreur " + response.data );
 	  }
 	});
-  }
+	}
+	unfollow(login)
+  {
+	axios.get("http://localhost:8080/RCTwister/Friend/Delete?My_login=" + this.props.login + "&His_Login=" + login + "&key="+ this.props.clef).then(response =>
+	{ 
+	  
+	  console.log(response.data)
+	  
+	  
+	  if(response.data["suppression de l'ami"] === "ok ")
+	  {
+		this.getInfos(login);
+		this.updateFriendshipStatus(login);
+	  }
+	  else{
+		console.log("erreur " + response.data );
+	  }
+	});
+	}
   render()
   {
   	return (
@@ -228,15 +284,16 @@ class Mur extends Component {
   				 />
   			</div>
   			<div className="main">
-  			{this.state.search ? <Users users={this.users} goUser={this.goToUser} />: <NewsFeed tweets={this.tweets} goUser={this.goToUser} delete={this.delete}/>}
+  			{this.state.search ? <Users users={this.users} goUser={this.goToUser} />: <NewsFeed tweets={this.tweets} goUser={this.goToUser} delete={this.delete} original={this.props.login} />}
   			</div>
   			{this.state.personnal? 
 			  
 			  <div className="nouveau">
   				<NewMessage sendMessage={this.addMessage}/>
 				  </div>
-				  :
-				  <Follow  follow={this.follow} login={this.infos.login} />}
+					:
+					this.state.friends ?  <Unfollow unfollow={this.unfollow}  login={this.infos.login}/> :  <Follow  follow={this.follow} login={this.infos.login} />
+				 }
   			</div>
   			
   		</div>
