@@ -26,7 +26,8 @@
 
 .Info_titre
 {
-	font-weight: bold;
+    font-weight: bold;
+    color : #000080;
     font-size: 18px;
     line-height: 25px;
     margin: -1px 0 -2px 0;
@@ -35,19 +36,19 @@
 }
 .mail
 {
-	font-size: 14px;
+    font-size: 12px;
     
 }
 
 .naissance
 {
-    font-size: 14px;
+    font-size: 12px;
     
 }
 
-.Sexe
+.sexe
 {
-    font-size: 14px;
+    font-size: 12px;
    
 }
 

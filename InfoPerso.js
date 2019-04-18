@@ -15,12 +15,9 @@ render()
 	        
 	        	<div className="infos_utilisateur_perso">
                     <div className="Info_titre">Infos Perso </div>
-                    <div className="mail">Adresse email : </div>
-		        	<div className="email">{this.props.email}</div>
-                    <div className="naissance">Date de naissance : </div>
-                    <div className="dat_N">{this.props.date_naissance}</div>
-                    <div className="Sexe">Sexe : {this.props.sexe}</div>
-                    <div className="sexe">{this.props.sexe}</div>
+                    <div className="mail">Adresse email :  {this.props.email} </div>
+                    <div className="naissance">Date de naissance : {this.props.date_naissance}</div>
+                    <div className="sexe">Sexe : {this.props.sexe == 'F' ? "Femme": "Homme"}</div>
 		        </div>
 	        
 

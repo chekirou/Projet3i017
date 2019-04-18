@@ -10,6 +10,9 @@ import Users from './Users'
 import image from './profil_homme.png'
 import './Mur.css';
 import Unfollow from './Unfollow'
+import InfoPerso from './InfoPerso'
+import ListeAmis from './ListeAmis'
+
 class Mur extends Component {
   constructor(props)
   {
@@ -24,11 +27,33 @@ class Mur extends Component {
 		this.searchPeople = this.searchPeople.bind(this);
 		this.delete = this.delete.bind(this);
 		this.unfollow = this.unfollow.bind(this);
-	  //this.getListAmis = this.getListAmis.bind(this);
+		this.getAmis = this.getAmis.bind(this);
 	  this.tweets =[]
-	  this.infos={}
-	  this.users = {};
+	  this.infos={};
+		this.users = {};
+		this.listeAmis = [];
 	  this.state = {infos : this.infos, personnal : true, mur: true, search: false, friends: false};
+	}
+	getAmis(login)
+	{
+		axios.get("http://localhost:8080/RCTwister//Friend/ListFriends?Login=" + login).then(response =>
+	{ 
+	  console.log(response.data)
+	  
+	  
+	  if( Object.keys(response.data).length === 2)
+	  {
+			this.listeAmis=[];
+			for( var i in response.data["friends"])
+			{
+				
+				this.listeAmis.push({pseudo : response.data["friends"][i]});
+			}
+	  }
+	  else{
+		alert("erreur " + response.data );
+	  }
+	});
 	}
 	delete(id_message)
 	{
@@ -88,6 +113,7 @@ class Mur extends Component {
 	console.log("get info de " + login);
 	this.updateFriendshipStatus(login);
 	this.getInfos(login);
+	this.getAmis(login);
 	this.setState({personnal : this.props.login === login, mur : false, search: false});
 	}
 	updateFriendshipStatus(login)
@@ -221,13 +247,14 @@ class Mur extends Component {
   {
 	this.updateMessage(this.props.login);
 	this.getInfos(this.props.login);
-	this.setState({personnal: true, mur: true})
+	this.setState({personnal: false, mur: true})
   }
   componentWillMount()
   {
 	
 	this.updateMessage(this.props.login);
 	this.getInfos(this.props.login);
+	this.getAmis(this.props.login);
 
   }
   follow(login)
@@ -282,6 +309,12 @@ class Mur extends Component {
   				abonements = {this.state.infos.abonements}
   				abonnés={this.state.infos.abonnés}
   				 />
+					 <InfoPerso
+					 email={this.state.infos.email}
+					 date_naissance={this.state.infos.DOB}
+					 sexe={this.state.infos.sexe}
+					 />
+					 {this.state.personnal ? <ListeAmis liste={this.listeAmis} goUser={this.goToUser} /> : <div></div>} 
   			</div>
   			<div className="main">
   			{this.state.search ? <Users users={this.users} goUser={this.goToUser} />: <NewsFeed tweets={this.tweets} goUser={this.goToUser} delete={this.delete} original={this.props.login} />}
