@@ -1,0 +1,111 @@
+.topbarConteneur
+{
+	backface-visibility: hidden;
+	border-bottom: 1px solid #e6ecf0;
+	position: fixed;
+	top: 0;
+	right: 0;
+	left : 0;
+	z-index: 1000;
+}
+.topbarConteneur2
+{
+	border-bottom: 1px solid rgba(0,0,0,0.25);
+	height: 46px;
+	position : relative;
+	width : 100%;
+}
+.topbarConteneur3
+{
+	background: #fff;
+    height: 46px;
+
+}
+.topbarConteneur4
+{
+	padding: 0;
+	text-align: center;
+	margin: 0 auto;
+	position: relative;
+	display: flex;
+	flex-direction: row;
+
+}
+.icone 
+{
+	width: 3em;
+	height: 2.9em;
+	margin-top: 0px;
+	margin-left: 30%;
+
+	
+}
+.home_notif
+{
+	display: flex;
+	flex-direction: row;
+	margin-left: 0;
+	padding: 0;
+}
+
+#home
+{
+	width:30px;
+	height: 30px;
+	margin-top: 10px;
+	margin-left: 1em;
+}
+#notifs
+{
+	width: 30px;
+	height: 30px;
+	margin-top: 10px;
+	margin-left: 1em
+}
+
+#deco
+{
+	width: 30px;
+	height: 30px;
+	margin-top: 10px;
+	margin-left: 40%;
+
+
+}
+.divsearch
+{
+	display: flex;
+	flex-direction: row;
+}
+
+.inputSearch {
+  font-family: Helvetica;
+  font-size: 20px;
+  color: #555555;
+  line-height: 1.2;
+  border-radius: 25px;
+  border: 2px solid #adadad ;
+  display: block;
+  width: 100%;
+  height: 35px;
+  background: transparent;
+  padding: 0 5px;
+  margin-top: 5px;
+  margin-left: 40%;
+
+}
+.boutonSearch
+{
+margin-top: 6px;
+font-family: Helvetica;
+
+border-radius: 20px;
+
+display: flex;
+justify-content: center;
+align-items: center;
+padding: 0 0px;
+width: 55%;
+height: 30px;
+
+}

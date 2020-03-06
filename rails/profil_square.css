@@ -1,0 +1,95 @@
+.profil_square
+{
+	
+    border-radius: 10px;
+	background: #fff;
+	position: relative;
+	margin-bottom: 10px;
+	display: block;
+	font-family: Helvetica, Arial, sans-serif;
+    box-shadow: 0 5px 10px 0px rgba(0, 0, 0, 0.1);
+
+}
+
+
+
+.avatar
+{
+	background-color: #fff;
+    border-radius: 50%;
+    margin: 0px 0 0 8px;
+    padding: 1px;
+    display: flex;
+    flex-direction: row;
+}
+
+.photo_profil
+{
+	border-radius: 50%;
+    height: 72px;
+    width: 72px;
+    border: 2px solid #fff;
+}
+.infos_utilisateur
+{
+	margin-top: 10px;
+}
+
+.nomPrenom
+{
+	font-weight: bold;
+    font-size: 18px;
+    line-height: 25px;
+    margin: -1px 0 -2px 0;
+
+}
+.pseudo
+{
+	font-size: 14px;
+    color: #657786;
+}
+.Stats
+{
+	padding-top: 16px;
+	padding-bottom: 16px;
+    padding-left: 0px;
+    padding-right: 16px;
+    display: flex;
+    flex-direction: row;
+
+}
+
+
+.infos
+{
+	box-sizing: border-box;
+    font-size: 12px;
+    display: table;
+    margin-left: 10px;
+    padding: 0;
+    white-space: nowrap;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.messages
+{
+	vertical-align: bottom;
+	display: table-cell;
+	padding: 0;
+	box-sizing: border-box;
+    line-height: 1;
+    overflow: hidden;
+}
+
+
+.lien_nP
+{
+    color: #000080;
+}
+
+.lien_pseudo
+{
+    color: #000080;
+}
